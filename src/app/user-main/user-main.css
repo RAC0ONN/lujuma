@@ -1,0 +1,503 @@
+.contenedor-principal{
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.menu-lateral{
+  width: 30%;
+  background-color: white;
+  color: white;
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+}
+.contenido-derecha{
+  width: 70%;
+  background-color: white;
+  overflow-y: auto;
+}
+.logo{
+  background-image: url("/images/logo-fijo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 25vw;
+  height: 35vh;
+  margin: 0px auto 20px auto;
+}
+
+h1{
+  text-align: center;
+  font-size: 5em;
+  font-family: Gadugi;
+  color: black;
+}
+h2{
+  color:black;
+  font-size: 3em;
+  font-family: Gadugi;
+}
+/*Tabla de ingesta objetiva*/
+table{
+  width: 60%;
+  border-collapse: collapse;
+  font-family: Gadugi;
+  font-size: 1.5em;
+  margin-top: 20px;
+  margin-left: 20%;
+  margin-bottom: 5%;
+
+}
+tr:first-child th{
+  background-color: #B83535;
+  color: white;
+  border-bottom: 3px solid black;
+  padding: 20px;
+}
+tr:not(:first-child){
+  background-color: white;
+  color: black;
+  border-bottom: 3px solid black;
+  text-align: left;
+  padding: 20px;
+}
+td{
+  border: 3px solid #608A61;
+  padding: 10px;
+}
+/*Contenedor de las comidas*/
+.contenedor-comidas{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 350px;
+  height: 550px;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: white;
+  border-color: black;
+  box-shadow: 30px 30px 15px rgba(220,220,220,0.8);
+  font-family: Gadugi;
+}
+.imagen-desayuno{
+  position: relative;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  background-image: url('/images/desayuno3.jpg');
+  background-size: cover;
+  background-position: center;
+
+}
+.imagen-almuerzo{
+  position: relative;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  background-image: url('/images/almuerzo2.webp');
+  background-position: center;
+  background-size: cover;
+}
+.imagen-cena{
+  position: relative;
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+  background-image: url('/images/cena.jpg');
+  background-position: center;
+  background-size: cover;
+}
+.imagen-snacks{
+  position: relative;
+  width: 100%;
+  height: 60%;
+
+  background-image: url('/images/snacks_sin_azucar.jpg');
+  background-size: contain;
+  background-position: center;
+}
+.informacion-comida{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: scroll;
+}
+.fila-comida{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid
+  #D4D4D4;
+  outline: none;
+  color: black;
+  font-size: 1.5em;
+  font-family: Gadugi;
+}
+.fila-comida-meta{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid
+  #D4D4D4;
+  outline: none;
+  background-color: darkgray;
+  color: black;
+  font-size: 1.5em;
+  font-family: Gadugi;
+}
+/*Titulos de contenedores de comidas*/
+.titulo-comida{
+  position:absolute;
+  top:5%;
+  left: 5%;
+  z-index: 1;
+  width: 32%;
+  height: 7%;
+  background-color: white;
+  border: 3px solid black;
+}
+.titulo-comida p{
+  font-color: black;
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 2%;
+
+}
+.boton-agregar-comida{
+  position:absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 5px  #000 solid;
+text-decoration: none;
+  background-color: black;
+  font-size: 5em;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 30px 30px 15px rgba(220,220,220,0.8);
+
+}
+button{
+  font-size: 1em;
+  border-radius: 60px ;
+  margin-top: 2%;
+  border: 3px solid black;
+  cursor: pointer;
+}
+.lista-comidas{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  padding: 20px;
+
+}
+
+.menu-lateral nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+.btn {
+
+  position: relative;
+  display: block;
+  width: 277px;
+  height: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 60px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration:none;
+  font-family: Gadugi;
+  margin: 15px 0;
+
+}
+
+.btn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btn svg rect {
+
+  stroke-width: 4;
+  stroke-dasharray: 353, 0;
+  stroke-dashoffset: 0;
+  -webkit-transition: all 600ms ease;
+  transition: all 600ms ease;
+}
+
+.btn span{
+  background: rgb(
+    138, 25, 25
+  );
+  background: -moz-linear-gradient(left,  rgba(
+    32, 79, 32) 0%, rgba(
+    138, 25, 25
+  ) 100%);
+  background: -webkit-linear-gradient(left,  rgba(
+    32, 79, 32) 0%,rgba(
+    138, 25, 25
+  ) 100%);
+  background: linear-gradient(to right,  rgba(
+    32, 79, 32) 0%,rgba(
+    138, 25, 25
+  ) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn:hover svg rect {
+  stroke-width: 4;
+  stroke-dasharray: 196, 543;
+  stroke-dashoffset: 437;
+}
+
+.footer {
+  text-align: center;
+  padding: 15px;
+  background-color: white;
+  color: black;
+  font-family: Gadugi;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/*Apartado de libro de recetas*/
+.contenedor-principal-receta{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap:10vw;
+  padding: 30px;
+}
+
+
+.imagen-libro-receta{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/recipe-book.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.contenedor-receta{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 40vw;
+  height: 85vh;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  border-color: black;
+  box-shadow: 30px 30px 15px rgba(220,220,220,0.8);
+  font-family: Gadugi;
+}
+
+.boton-siguiente button, .boton-anterior button, .btn-circular {
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 5px solid black;
+  color: black;
+  font-size: 4em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.btn-circular:hover {
+  background-color: #8A1919;
+  color: white;
+  box-shadow: 0 4px 15px rgba(138, 25, 25, 0.3);
+  transform: scale(1.3);
+}
+/*Apartado de manejar alimentos*/
+
+h2{
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.contenedor-alimento{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 40vw;
+  height: 80vh;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: white;
+  border: 5px solid black;
+  box-shadow: 5px 30px 30px 15px rgba(220,220,220,0.8);
+  gap: 30px;
+  justify-content: center;
+  margin: 0 auto;
+  color: black;
+  background-image: url("/images/fondo-comidas.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contenedor-alimento-contenido{
+  color: black;
+  z-index: 10;
+  font-size: 0.5em;
+  align-items: center;
+  text-align: center;
+
+}
+
+
+<!-- -->
+.grupo-formulario, .grupo-formulario2{
+  display: grid;
+  grid-template-columns: 400px 600px;
+  align-items: center;
+  justify-items: center;
+  gap: 10px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.grupo-formulario label, .grupo-formulario2 label {
+  font-size: 3em;
+  margin-bottom: 10px;
+  font-family: 'Gadugi', sans-serif;
+  text-align: center;
+}
+.datos-ingreso {
+  border: none;
+  border-bottom: 2px solid black;
+  background: transparent;
+  outline: none;
+  font-size: 3;
+  text-align: left;
+  width: 100%;
+  max-width: 400px;
+}
+.formulario-comida{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+.fila-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.fila-form label {
+  font-family: 'Gadugi', sans-serif;
+  font-size: 3em;
+  width: 250px;
+  text-align: left;
+}
+.datos-ingreso {
+  border: none;
+  border-bottom: 3px solid black;
+  background: transparent;
+  outline: none;
+  font-size: 3em;
+  font-family: 'Gadugi';
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+}
+.input-con-unidad {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  max-width: 300px;
+}
+
+.unidad {
+  font-family: 'Gadugi';
+  font-size: 3em;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.nota-formulario {
+  font-family: 'Gadugi';
+  font-size: 3em;
+  text-align: center;
+  color: #555;
+  margin: 20px 0;
+}
+
+.contenedor-boton-centro {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-guardar {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+  font-size: 3em;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.4s;
+}
+
+.btn-guardar:hover {
+  transform: scale(1.3);
+  background-color: #8A1919;
+}
+/*Apartado de visulaizacion del usuario*/
+.contenedor-usuario{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 40vw;
+  height: 80vh;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: white;
+  border: 5px solid black;
+  box-shadow: 5px 30px 30px 15px rgba(220,220,220,0.8);
+  gap: 30px;
+  justify-content: center;
+  margin: 0 auto;
+  color: black;
+  background-image: url("/images/fondo-usuario.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contenedor-usuario-contenido{
+  color: black;
+  z-index: 10;
+  font-size: 0.5em;
+  align-items: center;
+  text-align: center;
+
+}

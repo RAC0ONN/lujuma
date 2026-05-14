@@ -1,0 +1,311 @@
+body{
+  height: 100%;
+  margin: 0;
+  font-family: Gadugi, sans-serif;
+}
+
+.logo{
+  background-image: url("/images/logo-fijo.png");
+background-size: cover;
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30vw;
+  height: 30vh;
+  border-color: transparent;
+  background-color: transparent;
+  position: relative;
+  padding: 3.2rem 4rem;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+h1{
+  margin-top: 0px;
+  text-align: center;
+  font-size: 3rem;
+}
+/*Linea de progreso*/
+.grid-progreso{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 30px auto;
+  height: 60px;
+
+}
+.linea{
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  right: 0%;
+  height: 4px;
+  background-color: #03400E;
+  transform: translateY(-50%);
+  z-index: 1;
+  margin-bottom: 1vh;
+}
+.circulo{
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #03400E;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  justify-self: center;
+  position: relative;
+  margin-bottom: 1vh;
+}
+.circulo:nth-child(2) {
+  justify-self: start;
+}
+.circulo:nth-child(3) {
+  justify-self: center;
+}
+.circulo:nth-child(4) {
+justify-self: end;
+}
+/*Formulario #1*/
+
+.contenedor-formulario1 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.grupo-formulario, .grupo-formulario2{
+  display: grid;
+  grid-template-columns: 400px 600px;
+  align-items: start;
+  justify-items: start;
+  gap: 10px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.grupo-formulario label, .grupo-formulario2 label {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-family: 'Gadugi', sans-serif;
+  text-align: left;
+}
+.datos-ingreso {
+  border: none;
+  border-bottom: 2px solid black;
+  background: transparent;
+  outline: none;
+  font-size: 1.5em;
+  text-align: left;
+  width: 100%;
+  max-width: 400px;
+}
+/*Apartado de la fecha*/
+input[type="date"].datos-ingreso {
+  background-color: #BAE6B1;
+  color: #1F4F17 !important;
+  border: 1px solid #1F4F17;
+
+  border-radius: 4px;
+  font-size: 1.5em !important;
+  width: 250px !important;
+  padding: 12px !important;
+  text-align: center;
+}
+
+
+.datos-ingreso2 {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.tipo-documento {
+  background-color: #BAE6B1;
+  color: #1F4F17;
+  border: 1px solid #1F4F17;
+  padding: 5px;
+  width: 70px;
+  font-size: 1.5em;
+}
+
+.numero-documento {
+  border: none;
+  border-bottom: 2px solid black;
+  background: transparent;
+  outline: none;
+  width: 180px;
+  font-size: 1.5em;
+}
+/*Altura y peso*/
+.grupo-input {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  justify-content: flex-start;
+
+}
+
+.grupo-input input {
+  border: none;
+  border-bottom: 2px solid black;
+  background: transparent;
+  outline: none;
+  width: 100px;
+  font-size: 1.5em;
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+.grupo-input span {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #03400E;
+  margin-bottom: 40px;
+}
+
+/*Boton de siguiente*/
+.boton-siguiente{
+  font-family: Gadugi;
+  font-size: 1.5em;
+  color:  #03400E;
+  background: #D3E0D5 ;
+  border: 2px solid;
+  padding: 1rem 3rem;
+  margin: 0.5rem;
+  transition: 0.25s;
+  text-align: center;
+  cursor: pointer;
+
+}
+.boton-siguiente:hover, .boton-siguiente:focus{
+  color: white;
+  background-color: #03400E;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #03400E;
+}
+
+.centrado-boton{
+  margin-top: 3vh;
+  text-align: center;
+}
+
+
+
+
+
+/*Apratado para el email*/
+
+.apartado-email,
+.apartado-telefono,
+.apartado-estado-fisico {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2vh;
+  gap: 10px;
+}
+.apartado-email label,
+.apartado-telefono label,
+.apartado-estado-fisico label {
+  font-size: 1.3rem;
+  font-family: Gadugi, sans-serif;
+  text-align: center;
+}
+.apartado-email input {
+  font-size: 1.2rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  border-bottom: 2px solid black;
+  width: 250px;
+  text-align: center;
+}
+.apartado-telefono .controles-telefono {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.apartado-telefono select {
+  font-size: 1rem;
+  text-align: center;
+  background-color: #BAE6B1;
+  color: #1F4F17;
+  outline: none;
+  width: 160px;
+  height: 40px;
+  border: 1px solid #1F4F17;
+  border-radius: 4px;
+}
+.apartado-telefono input {
+  font-size: 1.2rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  border-bottom: 2px solid black;
+  width: 180px;
+  text-align: center;
+}
+.apartado-estado-fisico select {
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: #BAE6B1;
+  color: #1F4F17;
+  outline: none;
+  width: 280px;
+  height: 45px;
+  border: 1px solid #1F4F17;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/*Formulario de habitos*/
+.apartado-agua,
+.horas-suenio,
+.pasos-diarios,
+.horas-actividad-fisica {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0vh;
+  gap: 0px;
+}
+.apartado-agua label,
+.horas-suenio label,
+.pasos-diarios label,
+.horas-actividad-fisica label {
+  font-size: 1.5em;
+  font-family: Gadugi, sans-serif;
+  text-align: center;
+  max-width: 80%;
+}
+.grupo-input {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  justify-content: center;
+}
+.apartado-agua input,
+.horas-suenio input,
+.pasos-diarios input,
+.horas-actividad-fisica input {
+  font-size: 1.5rem;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  border-bottom: 2px solid black;
+  width: 100px;
+  text-align: center;
+}
+.grupo-input span {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #03400E;
+  font-family: Gadugi, sans-serif;
+}

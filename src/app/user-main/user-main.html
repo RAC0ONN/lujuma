@@ -1,0 +1,518 @@
+<div class="contenedor-principal">
+  <aside class="menu-lateral">
+    <div class="logo"></div>
+    <nav>
+
+      <!--Boton de menu principal-->
+      <a (click)="cambiarSeccion('dashboard')" class="btn" [class.active-btn]="seccionActiva === 'dashboard'">
+        <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#8A1919"/>
+              <stop offset="100%" stop-color="#13450E" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>Main</span>
+      </a>
+
+
+
+  <!--Boton de ir a receta-->
+      <a (click)="cambiarSeccion('recipe-book')" class="btn" [class.active-btn]="seccionActiva === 'recipe-book'">
+        <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#8A1919"/>
+              <stop offset="100%" stop-color="#13450E" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>Go to The Recipe Book</span>
+      </a>
+
+
+
+      <!--Boton de generar reporte-->
+      <a href="http://marcel-pirnay.be/" class="btn">
+        <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#FF8282"/>
+              <stop offset="100%" stop-color="#E178ED" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>Generate a report</span>
+      </a>
+      <!--Boton de calendario-->
+      <a href="http://marcel-pirnay.be/" class="btn">
+        <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#FF8282"/>
+              <stop offset="100%" stop-color="#E178ED" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>My Calendar</span>
+      </a>
+      <!--Boton de adminsitrar alimentos-->
+      <a (click)="cambiarSeccion('manage-food')" class="btn" [class.active-btn]="seccionActiva === 'manage-food'">
+      <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#FF8282"/>
+              <stop offset="100%" stop-color="#E178ED" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>Manage my foods</span>
+      </a>
+      <!--Boton de administrfar recetas-->
+      <a (click)="cambiarSeccion('manage-recipe')" class="btn" [class.active-btn]="seccionActiva === 'manage-recipe'">
+      <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#FF8282"/>
+              <stop offset="100%" stop-color="#E178ED" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>Manage my recipes</span>
+      </a>
+      <!--Boton del perfil-->
+      <a (click)="cambiarSeccion('manage-user')" class="btn" [class.active-btn]="seccionActiva === 'manage-user'">
+      <svg width="277" height="62">
+          <defs>
+            <linearGradient id="grad1">
+              <stop offset="0%" stop-color="#8A1919"/>
+              <stop offset="100%" stop-color="#13450E" />
+            </linearGradient>
+          </defs>
+          <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+        </svg>
+
+        <span>My profile</span>
+      </a>
+      <div class="footer"><p>© 2026 Salchipapa Con Lechona S.A.S. - All rights reserved</p>
+
+      </div>
+    </nav>
+  </aside>
+  <main class="contenido-derecha">
+    <!--Sección principal-->
+    <div *ngIf="seccionActiva === 'dashboard'">
+
+   <h1>
+ 🍎Today's Macronutrients Intake Goal🍎
+
+</h1>
+<!--Tabla de ingesta de macronutrientes-->
+<table>
+  <tr>
+    <th>Macronutrient</th>
+    <th>Total intake</th>
+    <th>Consumed intake</th>
+    <th>Missing intake</th>
+  </tr>
+  <tr>
+    <th>🥞Calories</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>🥑Fats</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>🥨Carbohydrates</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>🍗Proteins</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>🧁Sugars</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</table>
+<!--Contenedores de comidas del dia -->
+<div class="lista-comidas">
+  <!--Desayuno-->
+<div class="contenedor-comidas">
+  <div class="boton-agregar-comida">
+    <button>+</button>
+  </div>
+  <div class="titulo-comida">
+    <p>Breakfast</p>
+  </div>
+  <div class="imagen-desayuno">
+  </div>
+  <div class="informacion-comida">
+    <div class="fila-comida-meta">
+      <span>Current Intake</span>
+    </div>
+    <div class="fila-comida">
+      <span>Calories</span>
+    </div>
+    <div class="fila-comida">
+      <span>Fats</span>
+    </div>
+    <div class="fila-comida">
+      <span>Carbohydrates</span>
+    </div>
+    <div class="fila-comida">
+      <span>Proteins</span>
+    </div>
+    <div class="fila-comida">
+      <span>Sugars</span>
+    </div>
+    <div class="fila-comida-meta">
+      <span>Goal Intake</span>
+    </div>
+    <div class="fila-comida">
+      <span>Calories</span>
+    </div>
+    <div class="fila-comida">
+      <span>Fats</span>
+    </div>
+    <div class="fila-comida">
+      <span>Carbohydrates</span>
+    </div>
+    <div class="fila-comida">
+      <span>Proteins</span>
+    </div>
+    <div class="fila-comida">
+      <span>Sugars</span>
+    </div>
+
+</div>
+  <!--Comidas que incluyen el contenedor de cada comida-->
+  <div class="">
+
+  </div>
+
+
+
+</div>
+  <!--Almuerzo-->
+  <div class="contenedor-comidas">
+    <div class="boton-agregar-comida">
+      <button>+</button>
+    </div>
+    <div class="titulo-comida">
+      <p>Lunch</p>
+    </div>
+    <div class="imagen-almuerzo">
+    </div>
+    <div class="informacion-comida">
+      <div class="fila-comida-meta">
+        <span>Current Intake</span>
+      </div>
+      <div class="fila-comida">
+        <span>Calories</span>
+      </div>
+      <div class="fila-comida">
+        <span>Fats</span>
+      </div>
+      <div class="fila-comida">
+        <span>Carbohydrates</span>
+      </div>
+      <div class="fila-comida">
+        <span>Proteins</span>
+      </div>
+      <div class="fila-comida">
+        <span>Sugars</span>
+      </div>
+      <div class="fila-comida-meta">
+        <span>Goal Intake</span>
+      </div>
+      <div class="fila-comida">
+        <span>Calories</span>
+      </div>
+      <div class="fila-comida">
+        <span>Fats</span>
+      </div>
+      <div class="fila-comida">
+        <span>Carbohydrates</span>
+      </div>
+      <div class="fila-comida">
+        <span>Proteins</span>
+      </div>
+      <div class="fila-comida">
+        <span>Sugars</span>
+      </div>
+    </div>
+    <!--Comidas que incluyen el contenedor de cada comida-->
+    <div class="">
+
+    </div>
+
+
+
+  </div>
+  <!--Comida-->
+  <div class="contenedor-comidas">
+    <div class="boton-agregar-comida">
+      <button>+</button>
+    </div>
+    <div class="titulo-comida">
+      <p>Dinner</p>
+    </div>
+    <div class="imagen-cena">
+    </div>
+    <div class="informacion-comida">
+      <div class="fila-comida-meta">
+        <span>Current Intake</span>
+      </div>
+      <div class="fila-comida">
+        <span>Calories</span>
+      </div>
+      <div class="fila-comida">
+        <span>Fats</span>
+      </div>
+      <div class="fila-comida">
+        <span>Carbohydrates</span>
+      </div>
+      <div class="fila-comida">
+        <span>Proteins</span>
+      </div>
+      <div class="fila-comida">
+        <span>Sugars</span>
+      </div>
+      <div class="fila-comida-meta">
+        <span>Goal Intake</span>
+      </div>
+      <div class="fila-comida">
+        <span>Calories</span>
+      </div>
+      <div class="fila-comida">
+        <span>Fats</span>
+      </div>
+      <div class="fila-comida">
+        <span>Carbohydrates</span>
+      </div>
+      <div class="fila-comida">
+        <span>Proteins</span>
+      </div>
+      <div class="fila-comida">
+        <span>Sugars</span>
+      </div>
+
+    </div>
+    <!--Comidas que incluyen el contenedor de cada comida-->
+    <div class="">
+
+    </div>
+  </div>
+  <!--Snacks-->
+  <div class="contenedor-comidas">
+    <div class="boton-agregar-comida">
+      <button>+</button>
+    </div>
+    <div class="titulo-comida">
+      <p>Snacks</p>
+    </div>
+    <div class="imagen-snacks">
+    </div>
+    <div class="informacion-comida">
+    <div class="fila-comida-meta">
+      <span>Current Intake</span>
+    </div>
+    <div class="fila-comida">
+      <span>Calories</span>
+    </div>
+    <div class="fila-comida">
+      <span>Fats</span>
+    </div>
+    <div class="fila-comida">
+      <span>Carbohydrates</span>
+    </div>
+    <div class="fila-comida">
+      <span>Proteins</span>
+    </div>
+    <div class="fila-comida">
+      <span>Sugars</span>
+    </div>
+    <div class="fila-comida-meta">
+      <span>Goal Intake</span>
+    </div>
+    <div class="fila-comida">
+      <span>Calories</span>
+    </div>
+    <div class="fila-comida">
+      <span>Fats</span>
+    </div>
+    <div class="fila-comida">
+      <span>Carbohydrates</span>
+    </div>
+    <div class="fila-comida">
+      <span>Proteins</span>
+    </div>
+    <div class="fila-comida">
+      <span>Sugars</span>
+    </div>
+    </div>
+    <!--Comidas que incluyen el contenedor de cada comida-->
+    <div class="">
+    </div>
+
+  </div>
+</div>
+    </div>
+    <!--Libro de recetas-->
+    <div *ngIf="seccionActiva === 'recipe-book'" class="seccion-contenido">
+      <h1>🍎Lujuma's Recipe Book🍎</h1>
+      <div class="contenedor-principal-receta">
+        <div class="contenedor-boton-receta">
+          <button class="btn-circular">&lt;</button>
+        </div>
+      <div class="contenedor-receta">
+        <div class="imagen-libro-receta">
+        </div>
+      </div>
+      <div class="contenedor-boton-receta">
+        <button class="btn-circular">&gt;</button>
+      </div>
+      </div>
+    </div>
+    <!--Generar reporte-->
+
+    <!--Calendario-->
+
+    <!--Administrar mis alimentos-->
+
+    <div *ngIf="seccionActiva === 'manage-food'" class="seccion-contenido">
+
+      <h1>🍎Your Foods🍎</h1>
+
+      <div class="contenedor-alimento">
+        <div class="contenedor-alimento-contenido">
+          <h2>😉🥞Fill your food information🍗🥨</h2>
+
+          <div class="formulario-comida">
+
+            <div class="fila-form">
+              <label>Name 🥓🥑</label>
+              <input type="text" class="datos-ingreso">
+
+            </div>
+
+            <div class="fila-form">
+              <label>State 🍵</label>
+              <select class="datos-ingreso">
+                <option value="solido">It's a food</option>
+                <option value="liquido">It's a drink</option>
+              </select>
+
+            </div>
+
+            <div class="fila-form">
+              <label>Sugars 🍫</label>
+              <div class="input-con-unidad">
+                <input type="number" class="datos-ingreso">
+                <span class="unidad">g</span>
+              </div>
+
+            </div>
+
+            <div class="fila-form">
+              <label>Calories 🍜</label>
+              <div class="input-con-unidad">
+                <input type="number" class="datos-ingreso">
+                <span class="unidad">kcal</span>
+              </div>
+            </div>
+
+            <div class="fila-form">
+              <label>Fats 🥑</label>
+              <div class="input-con-unidad">
+                <input type="number" class="datos-ingreso">
+                <span class="unidad">g</span>
+              </div>
+            </div>
+
+            <div class="fila-form">
+              <label>Carbohydrates 🍚</label>
+              <div class="input-con-unidad">
+                <input type="number" class="datos-ingreso">
+                <span class="unidad">g</span>
+              </div>
+            </div>
+
+            <div class="fila-form">
+              <label>Protein 🥩</label>
+              <div class="input-con-unidad">
+                <input type="number" class="datos-ingreso">
+                <span class="unidad">g</span>
+              </div>
+            </div>
+
+            <p class="nota-formulario">All foods are defined for a portion of 100g (drinks 100ml)</p>
+
+            <div class="contenedor-boton-centro">
+              <button class="btn-guardar">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Administrar mis recetas-->
+    <div *ngIf="seccionActiva === 'manage-recipe'" class="seccion-contenido">
+    <h1>🍎Your recipes🍎</h1>
+      <div class="contenedor-alimento">
+        <div class="contenedor-alimento-contenido">
+        <h2>😉🥞Fill your recipe information🍗🥨</h2>
+
+        <div class="formulario-comida">
+
+          <div class="fila-form">
+            <label>Name 🥓🥑</label>
+            <input type="text" class="datos-ingreso">
+          </div>
+        </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!--Mi perfil-->
+    <div *ngIf="seccionActiva === 'manage-user'" class="seccion-contenido">
+    <h1>🍎My Profile🍎</h1>
+    <div class="contenedor-usuario">
+      <div class="contenedor-usuario-contenido">
+
+  </div>
+</div>
+
+    </div>
+
+
+
+
+  </main>
+</div>

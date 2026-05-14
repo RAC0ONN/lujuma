@@ -1,0 +1,93 @@
+.contenedor{
+  display: grid;
+  grid-template-columns: 1fr 750px;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
+/*Contenedor de la imagen*/
+.contenedor-izquierda{
+  background-image: url("/images/fondo-principal.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/*Contenedor del formulario*/
+.contenedor-derecha{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+/*Estilos del formulario*/
+.formulario-login{
+  text-align: center;
+}
+.formulario-login h1{
+  font-family: Gadugi;
+  text-align: center;
+  font-size: 6em;
+}
+.formulario-login h2{
+  font-family: Gadugi;
+  text-align: center;
+  font-size: 2em;
+  font-weight: lighter;
+}
+.formulario-login p{
+  font-family: Gadugi;
+  font-size: 1em;
+  color: black;
+  text-align: center;
+}
+/*Estilos del input del email y contrasena*/
+.formulario-login label{
+  font-family: Gadugi;
+  font-size: 1.5em;
+  color: black;
+  text-align: left;
+}
+.formulario-login input{
+  width: 100%;
+  text-align: left;
+  font-size: 1.5em;
+  font-family: Gadugi;
+  border:none;
+  background-color: transparent;
+  border-bottom: 3px solid black;
+  outline: none;
+}
+.formulario-login input:focus{
+  outline: none;
+  border-bottom: 3px solid #045E14;
+}
+.etiqueta-email{
+  text-align: left;
+}
+.etiqueta-password{
+  text-align: left;
+}
+/*Boton de inicio de sesion*/
+.formulario-login button{
+  font-family: Gadugi;
+  font-size: 1.5em;
+  color:  #03400E;
+  background: #D3E0D5 ;
+  border: 2px solid;
+  padding: 1rem 2rem;
+  margin: 0.5rem;
+  transition: 0.25s;
+  text-align: center;
+  cursor: pointer;
+}
+.formulario-login button:hover, .formulario-login button:focus{
+  color: white;
+  background-color: #03400E;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #03400E;
+}
+
