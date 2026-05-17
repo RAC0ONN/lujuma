@@ -1,26 +1,36 @@
 <div class="contenedor">
-  <!--Imagen de fondo-->
-  <div class="contenedor-izquierda">
-  </div>
-  <!--Formulario de login-->
+  <div class="contenedor-izquierda"></div>
+
   <div class="contenedor-derecha">
     <div class="formulario-login">
       <h1>🍎LUJUMA🍎</h1>
       <h2>Becoming your happiest self😉</h2>
-      <!--Label y campos de texto del email y contraseña-->
-      <div class="etiqueta-email"><label for="email">📩Your email:</label></div>
-      <input type="email" id="email" placeholder="lujuma@gmail.com">
-      <div class="etiqueta-password"><label for="password">🔒Your password:</label> </div>
-      <input type="password" id="password" placeholder="*******">
-      <!--Boton de registro de usuario-->
+
+      <div class="etiqueta-email"><label for="username">Your username:</label></div>
+      <input type="text" id="username" [(ngModel)]="campoUsuario" placeholder="Username is first name">
+
+      <div class="etiqueta-password"><label for="password">Your password:</label> </div>
+      <input type="password" id="password" [(ngModel)]="campoContrasenia" placeholder="Password is id number">
+
       <p>Don't have an account? <a href="/data">Sign up here</a></p>
-      <!--Boton de inicio de sesion-->
-      <a href="/main"><button>Sign in</button></a>
+
+      <button (click)="iniciarSesion()">Sign in</button>
     </div>
   </div>
 </div>
 
+@if (mostrarRequerimientoPrivacidad) {
+  <div class="modal-verificacion">
+    <div class="modal-contenido">
+      <h3>😉🍎Your privacy is first</h3>
+      <p>We value your privacy so let's make a verification question</p>
 
+      <label class="pregunta-texto">{{ preguntaPrivacidad }}?</label>
+      <input type="text" [(ngModel)]="campoRespuesta" placeholder="Type your answer">
 
-
-
+      <div class="modal-botones">
+        <button class="btn-verificar" (click)="validarPreguntaSeguridad()">Verify & Enter</button>
+      </div>
+    </div>
+  </div>
+}

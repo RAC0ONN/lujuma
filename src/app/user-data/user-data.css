@@ -10,15 +10,16 @@ background-size: cover;
   display: flex;
   background-repeat: no-repeat;
   background-position: center;
-  width: 30vw;
-  height: 30vh;
+  width: 250px;
+  height: 250px;
   border-color: transparent;
   background-color: transparent;
   position: relative;
   padding: 3.2rem 4rem;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top:10px;
 
 }
 h1{
@@ -309,3 +310,100 @@ input[type="date"].datos-ingreso {
   color: #03400E;
   font-family: Gadugi, sans-serif;
 }
+/*Apartado del contenedor flotante del consentimiento*/
+.contenedor-consentimiento-principal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.contenedor-consentimiento {
+  background-color: white;
+  width: 90%;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.3);
+  font-family: 'Gadugi', sans-serif;
+  animation: entradaModal 0.3s ease-out;
+}
+
+.contenedor-consentimiento h2 {
+  color: #03400E;
+  font-size: 2rem;
+  margin-top: 0;
+  text-align: center;
+}
+/*Texto de consentimiento*/
+.texto-consentimiento {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #333;
+  text-align: justify;
+}
+
+.opciones-consentimiento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+/*Checkbox de consentimiento*/
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #1F4F17;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #03400E;
+  cursor: pointer;
+}
+/*Boton de terminar el consentimiento*/
+.btn-finish {
+  font-family: 'Gadugi';
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: white;
+  background-color: #03400E;
+  border: none;
+  padding: 12px 60px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(3, 64, 14, 0.2);
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-finish:hover:not(:disabled) {
+  background-color: #13450E;
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(3, 64, 14, 0.4);
+}
+
+/*Boton bloqueado cuando no se acepa el cosentimiento*/
+.btn-finish:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+

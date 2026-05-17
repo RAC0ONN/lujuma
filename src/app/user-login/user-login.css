@@ -90,4 +90,86 @@
   cursor: pointer;
   border: 2px solid #03400E;
 }
+/*Estilos para el mensaje flotante de pregunta de seguridad y validacion*/
+/* Contenedor oscuro de fondo que bloquea la pantalla */
+.modal-verificacion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
+.modal-contenido {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid black;
+ 
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  color: black;
+  font-family: Gadugi;
+  font-size: 1.5em;
+}
+
+.pregunta-texto {
+  display: block;
+  margin: 15px 0;
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  font-family: Gadugi;
+}
+
+.modal-contenido input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: white;
+  border: 1px solid black;
+  color: black;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.modal-contenido input:focus {
+  border-color: red;
+  outline: none;
+  font-size: 1em;
+}
+
+.modal-botones {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+
+.btn-verificar {
+  color: white;
+  background-color: #03400E;
+  transition: all 0.25s ease-in-out;
+  font-size: 1em;
+  font-family: Gadugi;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  flex: 1;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.btn-verificar:hover {
+  background-color: #13450E;
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(3, 64, 14, 0.4);
+}

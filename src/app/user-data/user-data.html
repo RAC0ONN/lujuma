@@ -15,29 +15,38 @@
 <form name="formualrio-datos-personales1">
 
 <div class="grupo-formulario">
-  <label for="name">🍎What's your name?</label>
-  <input type="text" id="name" class="datos-ingreso"></div>
+  <label for="name">🍎What's your first name?</label>
+  <input type="text" name="primerNombre" [(ngModel)]="registroData.primerNombre" class="datos-ingreso"></div>
+  <div class="grupo-formulario">
+    <label for="second-name">🍎What's your second name?</label>
+    <input type="text" name="segundoNombre" [(ngModel)]="registroData.segundoNombre" class="datos-ingreso"></div>
+  <div class="grupo-formulario">
+    <label for="lastname">🍎What's your first lastname?</label>
+    <input type="text" name="primerApellido" [(ngModel)]="registroData.primerApellido" class="datos-ingreso"></div>
+  <div class="grupo-formulario">
+    <label for="second-lastname">🍎What's your second lastname?</label>
+    <input type="text" name="segundoApellido"[(ngModel)]="registroData.segundoApellido"  class="datos-ingreso"></div>
 <!--Fecha de nacimiento-->
 <div class="grupo-formulario">
   <label for="datepicker">🎂Select your birth date </label>
-  <input type="date" id="datepicker" name="datepicker" class="datos-ingreso"></div>
+  <input type="date" name="fechaNacimiento" [(ngModel)]="registroData.fechaNacimiento" class="datos-ingreso"></div>
 <!--Documento-->
 <div class="grupo-formulario2">
   <label>🪪Enter your id type</label>
   <div class="datos-ingreso2">
-  <select class="tipo-documento" id="tipo-documento" name="tipo-documento">
-    <option value="cc">C.C</option>
-    <option value="fc">F.C</option>
-    <option value="ic">I.C</option>
+  <select [(ngModel)]="registroData.tipoDocumento" name="tipoDocumento" class="tipo-documento" id="tipo-documento" name="tipo-documento">
+    <option value="CC">C.C</option>
+    <option value="FC">F.C</option>
+    <option value="IC">I.C</option>
   </select>
-  <input class="numero-documento" type="text" id="document-number" name="document-number" placeholder="Number">
+  <input class="numero-documento" type="number" name="numeroDocumento" [(ngModel)]="registroData.numeroDocumento" placeholder="Number">
 </div>
 </div>
 <!--Altura-->
 <div class="grupo-formulario">
   <label for="altura">🍎Enter your height</label>
   <div class="grupo-input">
-  <input type="number" id="altura" name="altura">
+  <input type="number" name="altura" [(ngModel)]="registroData.altura">
     <span>cm</span>
 </div>
 </div>
@@ -45,7 +54,7 @@
 <div class="grupo-formulario">
   <label for="peso">🍎Enter your weight</label>
   <div class="grupo-input">
-  <input type="number" id="peso" name="peso">
+  <input type="number" name="peso" [(ngModel)]="registroData.peso">
     <span>kg</span>
 </div>
 </div>
@@ -56,19 +65,19 @@
 </form>
 }
 </div>
-<!--FORMULARIO: Datos de contacto y nivel de actividad física-->
+<!--Paso 2 de datos de conatcto-->
 @if(pasoActual===2){
 <form name="formulario-datos-personales2">
 <!--Apartado para el correo electronico-->
 <div class="apartado-email">
   <label for="email">📧‍‍️Enter your email</label>
-  <input type="email" id="email" name="email">
+  <input type="email" name="correo" [(ngModel)]="correoInput">
 </div>
 <!--Apartado para el telefono-->
   <div class="apartado-telefono">
     <label for="telefono">📞Enter your phone number</label>
     <div class="controles-telefono">
-    <select name="country_code">
+    <select name="country_code"[(ngModel)]="codigoPaisInput">
       <option value="+93">Afganistán (+93)</option>
       <option value="+355">Albania (+355)</option>
       <option value="+49">Alemania (+49)</option>
@@ -257,18 +266,18 @@
       <option value="+263">Zimbabue (+263)</option>
     </select>
 
-    <input type="number" id="telefono" name="telefono">
+    <input type="number" id="telefono" name="telefono" [(ngModel)]="registroData.numeroTelefono">
   </div>
   </div>
   <!--Apartado de estado de estado fisico-->
   <div class="apartado-estado-fisico">
     <label for="estado-fisico">🏃Which one describes the most your level of physical activity?</label>
-    <select class="estado-fisico" id="estado-fisico" name="estado-fisico">
-      <option value="sedentario">Sedentary</option>
-      <option value="leve">Light</option>
-      <option value="moderado">Moderate</option>
-      <option value="activo">Active</option>
-      <option value="intenso">Intense</option>
+    <select class="estado-fisico" [(ngModel)]="registroData.nivelActividadFisica" name="nivelActividadFisica">
+      <option value="SEDENTARY">Sedentary</option>
+      <option value="MILD">Mild</option>
+      <option value="MODERATE">Moderate</option>
+      <option value="ACTIVE">Active</option>
+      <option value="INTENSE">Intense</option>
     </select>
   </div>
   <div class="vaso"></div>
@@ -286,7 +295,7 @@
     <div class="apartado-agua">
       <label for="ingesta-agua">🫗️️How mucho water (mml) do you usually drink through the day</label>
       <div class="grupo-input">
-        <input type="number" name="ingesta-agua">
+        <input type="number" name="aguaDiaria" [(ngModel)]="registroData.aguaDiaria">
         <span>ml</span>
       </div>
     </div>
@@ -294,7 +303,7 @@
     <div class="horas-suenio">
       <label for="horas-suenio">💤How much hours of sleep do you have regularly?</label>
       <div class="grupo-input">
-        <input type="number" name="horas-suenio">
+        <input type="number" name="horaSuenio" [(ngModel)]="registroData.horaSuenio">
         <span>h</span>
       </div>
     </div>
@@ -302,7 +311,7 @@
     <div class="pasos-diarios">
       <label for="pasos-diarios">🏃‍How much daily steps you do regularly (per day)?</label>
       <div class="grupo-input">
-        <input type="number" name="pasos-diarios">
+        <input type="number" name="pasoDiario" [(ngModel)]="registroData.pasoDiario">
         <span>steps/day</span>
       </div>
     </div>
@@ -310,13 +319,89 @@
     <div class="horas-actividad-fisica">
       <label for="horas-actividad-fisica">🤸‍♀️How much hours of physical activity you do daily?</label>
       <div class="grupo-input">
-        <input type="number" name="horas-actividad-fisica">
+        <input type="number" name="horaActividadDiaria" [(ngModel)]="registroData.horaActividadDiaria">
         <span>h</span>
       </div>
     </div>
-    <!--Boton de enviar datos del usuario-->
+    <!--Boton que envia los datos del usuario-->
     <div class="centrado-boton">
-      <button type="button" class="boton-siguiente" (click)="siguientePaso()">Finish</button>
+      <button type="button" class="boton-siguiente" (click)="siguientePaso()">Next</button>
     </div>
   </form>
+
+}
+<!--Paso final de mostrar el consentimiento al usaurio-->
+@if (mostrarConsentimiento) {
+  <div class="contenedor-consentimiento-principal">
+    <div class="contenedor-consentimiento">
+
+      <div class="texto-consentimiento">
+        <h2>LUJUMA'S CONSENT OF TERMS AND CONDITIONS</h2>
+        <p><strong>Last updated:</strong> May 16, 2026</p>
+
+        <h3>AGREEMENT TO OUR LEGAL TERMS</h3>
+
+        <p>By accessing and using our Services, you agree to these Terms and Conditions. If you do not agree, you must immediately stop using the Services.</p>
+
+        <p><strong>Salchipapa con Lechona S.A.S.</strong> (“Company”, “we”, “us”, or “our”) operates <strong>Lujuma</strong>, a platform for tracking macronutrient consumption.</p>
+
+        <p>The Services are intended for users who are at least 13 years old. If you are a minor (under 18 in most jurisdictions), you must have permission and supervision from a parent or guardian.</p>
+
+        <h3>1. Intellectual Property</h3>
+        <p>All content, design, logos, and materials on Lujuma are the property of the Company or properly licensed. Copying, reproducing, distributing, or using them for commercial purposes without our express permission is strictly prohibited.</p>
+
+        <h3>2. User Registration</h3>
+        <p>You must provide accurate and complete information during registration and keep it updated. You are responsible for maintaining the confidentiality of your password and all activities under your account.</p>
+
+        <h3>3. Prohibited Activities</h3>
+        <p>You may not use the platform to:</p>
+        <ul>
+          <li>Engage in any illegal or unauthorized activities</li>
+          <li>Upload false, harmful, offensive, harassing, or defamatory content</li>
+          <li>Systematically extract or scrape data</li>
+          <li>Attempt to hack, interfere with, or disrupt the Service</li>
+          <li>Use bots, scripts, or automated tools</li>
+        </ul>
+
+        <h3>4. User Content</h3>
+        <p>Any content you submit remains yours, but you grant us a license to use it for operating and improving the Service. You agree not to upload content that violates third-party rights.</p>
+
+        <h3>5. Privacy</h3>
+        <p>Your use of the Services is also governed by our Privacy Policy.</p>
+
+        <h3>6. Limitation of Liability</h3>
+        <p>The Services are provided “as is”. We are not liable for indirect damages, data loss, or service interruptions.</p>
+
+        <h3>7. Termination</h3>
+        <p>We reserve the right to suspend or terminate your account at any time if you breach these Terms.</p>
+
+        <h3>8. Governing Law</h3>
+        <p>These Terms are governed by the laws of Colombia. Any disputes will be resolved in the courts of Colombia.</p>
+
+        <h3>9. Contact Us</h3>
+        <p><strong>Salchipapa con Lechona S.A.S.</strong><br>
+          Email: <a href="mailto:salchipapaconlechona@gmail.com">salchipapaconlechona&#64;gmail.com</a></p>
+
+        <p>We recommend you keep a copy of these Terms for your records.</p>
+
+        <br>
+        <p>This Terms and Conditions was created using <a href="https://termly.io/products/terms-and-conditions-generator/" target="_blank" rel="noopener">Termly's Terms and Conditions Generator</a>.</p>
+      </div>
+
+      <div class="opciones-consentimiento">
+        <label class="checkbox">
+          <input type="checkbox"  name="terminoAceptado" [(ngModel)]="terminoAceptado">
+          <span>I accept the terms and conditions</span>
+        </label>
+
+        <button
+          type="button"
+          class="btn-finish"
+          [disabled]="!terminoAceptado"
+          (click)="finalizarRegistro()">
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
 }
