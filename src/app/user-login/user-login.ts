@@ -55,7 +55,7 @@ export class UserLogin {
       }
     );
   }
-
+//Metodo para generar la pregunta aleatoria de verificacion de seguridad
   generarPreguntaAleatoria() {
     const pregunta = [
       {
@@ -89,6 +89,9 @@ export class UserLogin {
     const respuestaCorrecta = this.respuestaCorrectaPrivacidad.toString().trim().toLowerCase();
 
     if (respuestaIngresada === respuestaCorrecta) {
+
+      //Usuario guardado
+      localStorage.setItem('usuarioLogueado', JSON.stringify(this.usuarioLogueado));
       this.mostrarRequerimientoPrivacidad = false;
       this.campoRespuesta = '';
       this.campoUsuario = '';

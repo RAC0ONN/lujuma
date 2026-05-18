@@ -1,5 +1,5 @@
 export interface RegistroCompletoDTO {
- /*Interfaz que actua como el molde de la estructura de los datos,
+ /*Interfaz que actua como el molde de la estructura de los usuarios,
  * como se esperan desde el back*/
   numeroDocumento: number;
   tipoDocumento: string;

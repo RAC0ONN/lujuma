@@ -205,6 +205,9 @@ button{
   align-items: center;
   gap: 15px;
 }
+
+/*Botones del menu lateral, estos se extrajeron del framework
+de */
 .btn {
 
   position: relative;
@@ -370,8 +373,6 @@ h2{
 
 }
 
-
-<!-- -->
 .grupo-formulario, .grupo-formulario2{
   display: grid;
   grid-template-columns: 400px 600px;
@@ -457,7 +458,7 @@ h2{
 }
 
 .btn-guardar {
-  background-color: black;
+  background-color: darkgreen;
   color: white;
   padding: 10px 40px;
   font-size: 3em;
@@ -501,3 +502,177 @@ h2{
   text-align: center;
 
 }
+/*Estilos para la receta creada por el usuario*/
+
+.contenedor-alimentos-recetas {
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
+}
+
+.subtitulo-alimentos-recetas {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.lista-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.alimento-alimentos-recetas{
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1e4518, #132b10);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #2e6624;
+
+}
+
+.btn-remover-alimentos-recetas {
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 1.1rem;
+  margin-left: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.btn-remover-chip:hover {
+  color: #ff1a1a;
+  transform: scale(1.1);
+}
+
+/*Estilos de el campo flotante de comida*/
+
+.modal-flotante {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-contenedor {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 25px;
+  width: 100%;
+  max-width: 420px;
+  color: black;
+  animation: modalAparecer 0.25s ease-out;
+}
+
+.modal-titulo {
+  margin: 0 0 8px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: black;
+  font-family: Gadugi;
+  font-size: 2em;
+}
+
+.modal-subtitulo {
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  color: black;
+  font-family: Gadugi;
+  font-size: 2em;
+}
+
+.modal-subtitulo span {
+  font-weight: bold;
+  color: black;
+  font-family: Gadugi;
+  font-size: 2em;
+}
+
+.selector-recetas {
+  margin-bottom: 20px;
+}
+
+.estilo-select-recetas {
+  width: 100%;
+  height: 140px;
+  background-color: white;
+  color: black;
+  border: 1px solid #444444;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.estilo-select-recetas:focus {
+  border-color: red;
+}
+
+.estilo-select-recetas option {
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+.ayuda-mensaje {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: #666666;
+}
+.modal-botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-cancelar, .btn-guardar {
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancelar {
+  background-color: transparent;
+  color: #ff4444;
+  border: 1px solid #ff4444;
+}
+
+.btn-cancelar:hover {
+  background-color: rgba(255, 68, 68, 0.1);
+  transform: scale(1.1);
+}
+/*Animacion para que las recetas floten*/
+@keyframes modalAparecer {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/*Estilos para los macronutrientes faltantes*/

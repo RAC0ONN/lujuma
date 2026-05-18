@@ -10,7 +10,7 @@ import { RegistroCompletoDTO} from '../models/registro-completo.dto';
   styleUrls: ['./user-data.css'],
 })
 export class UserData {
-  /*Se inicializa el objeto teniendxo en cuanta el molde definido en
+  /*Se inicializa el usuario teniendxo en cuanta el molde definido en
   * el registro completo, aqui estan los valores por defecto*/
   pasoActual: number=1;
   mostrarConsentimiento: boolean = false;

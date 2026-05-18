@@ -91,7 +91,7 @@
   border: 2px solid #03400E;
 }
 /*Estilos para el mensaje flotante de pregunta de seguridad y validacion*/
-/* Contenedor oscuro de fondo que bloquea la pantalla */
+
 .modal-verificacion {
   position: fixed;
   top: 0;
@@ -110,7 +110,7 @@
   padding: 30px;
   border-radius: 12px;
   border: 2px solid black;
- 
+
   text-align: center;
   max-width: 400px;
   width: 90%;

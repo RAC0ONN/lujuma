@@ -121,50 +121,54 @@
 
 </h1>
 <!--Tabla de ingesta de macronutrientes-->
-<table>
-  <tr>
-    <th>Macronutrient</th>
-    <th>Total intake</th>
-    <th>Consumed intake</th>
-    <th>Missing intake</th>
-  </tr>
-  <tr>
-    <th>🥞Calories</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th>🥑Fats</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th>🥨Carbohydrates</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th>🍗Proteins</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <tr>
-    <th>🧁Sugars</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-</table>
+      <table class="tabla-macros">
+        <thead>
+        <tr>
+          <th>Macronutrient</th>
+          <th>Total intake</th>
+          <th>Consumed intake</th>
+          <th>Missing intake</th>
+        </tr>
+        </thead>
+
+        <tr>
+          <th>🥞Calories</th>
+          <td><strong>{{ usuario?.caloria | number:'1.0-2' }} kcal</strong></td>
+          <td><strong>{{ totalCaloriasConsumidas | number:'1.0-2' }} kcal</strong></td>
+          <td [class.meta-cumplida]="caloriasFaltantes === 0"><strong>{{ caloriasFaltantes | number:'1.0-2' }} kcal</strong></td>
+        </tr>
+        <tr>
+          <th>🥑Fats</th>
+          <td><strong>{{ usuario?.grasa | number:'1.0-2' }} g</strong></td>
+          <td><strong>{{ totalGrasasConsumidas | number:'1.0-2' }} g</strong></td>
+          <td [class.meta-cumplida]="grasasFaltantes === 0"><strong>{{ grasasFaltantes | number:'1.0-2' }} g</strong></td>
+        </tr>
+        <tr>
+          <th>🥨Carbohydrates</th>
+          <td><strong>{{ usuario?.carbohidrato | number:'1.0-2' }} g</strong></td>
+          <td><strong>{{ totalCarbohidratosConsumidos | number:'1.0-2' }} g</strong></td>
+          <td [class.meta-cumplida]="carbohidratosFaltantes === 0"><strong>{{ carbohidratosFaltantes | number:'1.0-2' }} g</strong></td>
+        </tr>
+        <tr>
+          <th>🍗Proteins</th>
+          <td><strong>{{ usuario?.proteina | number:'1.0-2' }} g</strong></td>
+          <td><strong>{{ totalProteinasConsumidas | number:'1.0-2' }} g</strong></td>
+          <td [class.meta-cumplida]="proteinasFaltantes === 0"><strong>{{ proteinasFaltantes | number:'1.0-2' }} g</strong></td>
+        </tr>
+        <tr>
+          <th>🧁Sugars</th>
+          <td><strong>{{ usuario?.azucar | number:'1.0-2' }} g</strong></td>
+          <td><strong>{{ totalAzucarConsumidas | number:'1.0-2' }} g</strong></td>
+          <td [class.meta-cumplida]="azucarFaltantes === 0"><strong>{{ azucarFaltantes | number:'1.0-2' }} g</strong></td>
+        </tr>
+
+      </table>
 <!--Contenedores de comidas del dia -->
 <div class="lista-comidas">
   <!--Desayuno-->
 <div class="contenedor-comidas">
   <div class="boton-agregar-comida">
-    <button>+</button>
+    <button (click)="abrirModalComida('BREAKFAST')">+</button>
   </div>
   <div class="titulo-comida">
     <p>Breakfast</p>
@@ -175,53 +179,17 @@
     <div class="fila-comida-meta">
       <span>Current Intake</span>
     </div>
-    <div class="fila-comida">
-      <span>Calories</span>
-    </div>
-    <div class="fila-comida">
-      <span>Fats</span>
-    </div>
-    <div class="fila-comida">
-      <span>Carbohydrates</span>
-    </div>
-    <div class="fila-comida">
-      <span>Proteins</span>
-    </div>
-    <div class="fila-comida">
-      <span>Sugars</span>
-    </div>
-    <div class="fila-comida-meta">
-      <span>Goal Intake</span>
-    </div>
-    <div class="fila-comida">
-      <span>Calories</span>
-    </div>
-    <div class="fila-comida">
-      <span>Fats</span>
-    </div>
-    <div class="fila-comida">
-      <span>Carbohydrates</span>
-    </div>
-    <div class="fila-comida">
-      <span>Proteins</span>
-    </div>
-    <div class="fila-comida">
-      <span>Sugars</span>
-    </div>
-
+    <div class="fila-comida"><span>Calories: <strong>{{comidasDelDia['BREAKFAST'].caloria}} kcal</strong></span></div>
+    <div class="fila-comida"><span>Fats: <strong>{{comidasDelDia['BREAKFAST'].grasa}}g</strong></span></div>
+    <div class="fila-comida"><span>Carbohydrates: <strong>{{comidasDelDia['BREAKFAST'].carbohidrato}}g</strong></span></div>
+    <div class="fila-comida"><span>Proteins: <strong>{{comidasDelDia['BREAKFAST'].proteina}}g</strong></span></div>
+    <div class="fila-comida"><span>Sugars: <strong>{{comidasDelDia['BREAKFAST'].azucar}}g</strong></span></div>
 </div>
-  <!--Comidas que incluyen el contenedor de cada comida-->
-  <div class="">
-
-  </div>
-
-
-
 </div>
   <!--Almuerzo-->
   <div class="contenedor-comidas">
     <div class="boton-agregar-comida">
-      <button>+</button>
+      <button (click)="abrirModalComida('LUNCH')">+</button>
     </div>
     <div class="titulo-comida">
       <p>Lunch</p>
@@ -229,55 +197,20 @@
     <div class="imagen-almuerzo">
     </div>
     <div class="informacion-comida">
-      <div class="fila-comida-meta">
-        <span>Current Intake</span>
-      </div>
-      <div class="fila-comida">
-        <span>Calories</span>
-      </div>
-      <div class="fila-comida">
-        <span>Fats</span>
-      </div>
-      <div class="fila-comida">
-        <span>Carbohydrates</span>
-      </div>
-      <div class="fila-comida">
-        <span>Proteins</span>
-      </div>
-      <div class="fila-comida">
-        <span>Sugars</span>
-      </div>
-      <div class="fila-comida-meta">
-        <span>Goal Intake</span>
-      </div>
-      <div class="fila-comida">
-        <span>Calories</span>
-      </div>
-      <div class="fila-comida">
-        <span>Fats</span>
-      </div>
-      <div class="fila-comida">
-        <span>Carbohydrates</span>
-      </div>
-      <div class="fila-comida">
-        <span>Proteins</span>
-      </div>
-      <div class="fila-comida">
-        <span>Sugars</span>
-      </div>
+
+      <div class="fila-comida-meta"><span>Current Intake</span></div>
+      <div class="fila-comida"><span>Calories: <strong>{{comidasDelDia['LUNCH'].caloria}} kcal</strong></span></div>
+      <div class="fila-comida"><span>Fats: <strong>{{comidasDelDia['LUNCH'].grasa}}g</strong></span></div>
+      <div class="fila-comida"><span>Carbohydrates: <strong>{{comidasDelDia['LUNCH'].carbohidrato}}g</strong></span></div>
+      <div class="fila-comida"><span>Proteins: <strong>{{comidasDelDia['LUNCH'].proteina}}g</strong></span></div>
+      <div class="fila-comida"><span>Sugars: <strong>{{comidasDelDia['LUNCH'].azucar}}g</strong></span></div>
     </div>
-    <!--Comidas que incluyen el contenedor de cada comida-->
-    <div class="">
-
-    </div>
-
-
 
   </div>
   <!--Comida-->
   <div class="contenedor-comidas">
     <div class="boton-agregar-comida">
-      <button>+</button>
+      <button (click)="abrirModalComida('DINNER')">+</button>
     </div>
     <div class="titulo-comida">
       <p>Dinner</p>
@@ -288,50 +221,19 @@
       <div class="fila-comida-meta">
         <span>Current Intake</span>
       </div>
-      <div class="fila-comida">
-        <span>Calories</span>
-      </div>
-      <div class="fila-comida">
-        <span>Fats</span>
-      </div>
-      <div class="fila-comida">
-        <span>Carbohydrates</span>
-      </div>
-      <div class="fila-comida">
-        <span>Proteins</span>
-      </div>
-      <div class="fila-comida">
-        <span>Sugars</span>
-      </div>
-      <div class="fila-comida-meta">
-        <span>Goal Intake</span>
-      </div>
-      <div class="fila-comida">
-        <span>Calories</span>
-      </div>
-      <div class="fila-comida">
-        <span>Fats</span>
-      </div>
-      <div class="fila-comida">
-        <span>Carbohydrates</span>
-      </div>
-      <div class="fila-comida">
-        <span>Proteins</span>
-      </div>
-      <div class="fila-comida">
-        <span>Sugars</span>
-      </div>
+      <div class="fila-comida"><span>Calories: <strong>{{comidasDelDia['DINNER'].caloria}} kcal</strong></span></div>
+      <div class="fila-comida"><span>Fats: <strong>{{comidasDelDia['DINNER'].grasa}}g</strong></span></div>
+      <div class="fila-comida"><span>Carbohydrates: <strong>{{comidasDelDia['DINNER'].carbohidrato}}g</strong></span></div>
+      <div class="fila-comida"><span>Proteins: <strong>{{comidasDelDia['DINNER'].proteina}}g</strong></span></div>
+      <div class="fila-comida"><span>Sugars: <strong>{{comidasDelDia['DINNER'].azucar}}g</strong></span></div>
 
     </div>
-    <!--Comidas que incluyen el contenedor de cada comida-->
-    <div class="">
 
-    </div>
   </div>
   <!--Snacks-->
   <div class="contenedor-comidas">
     <div class="boton-agregar-comida">
-      <button>+</button>
+      <button (click)="abrirModalComida('SNACKS')">+</button>
     </div>
     <div class="titulo-comida">
       <p>Snacks</p>
@@ -342,47 +244,37 @@
     <div class="fila-comida-meta">
       <span>Current Intake</span>
     </div>
-    <div class="fila-comida">
-      <span>Calories</span>
-    </div>
-    <div class="fila-comida">
-      <span>Fats</span>
-    </div>
-    <div class="fila-comida">
-      <span>Carbohydrates</span>
-    </div>
-    <div class="fila-comida">
-      <span>Proteins</span>
-    </div>
-    <div class="fila-comida">
-      <span>Sugars</span>
-    </div>
-    <div class="fila-comida-meta">
-      <span>Goal Intake</span>
-    </div>
-    <div class="fila-comida">
-      <span>Calories</span>
-    </div>
-    <div class="fila-comida">
-      <span>Fats</span>
-    </div>
-    <div class="fila-comida">
-      <span>Carbohydrates</span>
-    </div>
-    <div class="fila-comida">
-      <span>Proteins</span>
-    </div>
-    <div class="fila-comida">
-      <span>Sugars</span>
-    </div>
-    </div>
-    <!--Comidas que incluyen el contenedor de cada comida-->
-    <div class="">
+      <div class="fila-comida"><span>Calories: <strong>{{comidasDelDia['SNACKS'].caloria}} kcal</strong></span></div>
+      <div class="fila-comida"><span>Fats: <strong>{{comidasDelDia['SNACKS'].grasa}}g</strong></span></div>
+      <div class="fila-comida"><span>Carbohydrates: <strong>{{comidasDelDia['SNACKS'].carbohidrato}}g</strong></span></div>
+      <div class="fila-comida"><span>Proteins: <strong>{{comidasDelDia['SNACKS'].proteina}}g</strong></span></div>
+      <div class="fila-comida"><span>Sugars: <strong>{{comidasDelDia['SNACKS'].azucar}}g</strong></span></div>
     </div>
 
   </div>
 </div>
     </div>
+    <div class="modal-flotante" *ngIf="mostrarModalComida">
+      <div class="modal-contenedor">
+        <h3 class="modal-titulo">Select the recipes you'd like to add</h3>
+        <p class="modal-subtitulo">Adding to: <span>{{ tipoComidaSeleccionadaModal }}</span></p>
+
+        <div class="selector-recetas">
+          <select multiple [(ngModel)]="recetasSeleccionadasIds" class="estilo-select-recetas">
+            <option *ngFor="let receta of listaRecetasDisponibles" [value]="receta.idReceta">
+              {{ receta.nombre }} ({{ receta.caloria }} kcal)
+            </option>
+          </select>
+          <small class="ayuda-mensaje">To select multiple recipes hold CTRL</small>
+        </div>
+
+        <div class="modal-botones">
+          <button class="btn-cancelar" (click)="cerrarModalComida()">Cancel</button>
+          <button class="btn-guardar" (click)="guardarRecetasEnComida()">Add Recipe(s)</button>
+        </div>
+      </div>
+    </div>
+
     <!--Libro de recetas-->
     <div *ngIf="seccionActiva === 'recipe-book'" class="seccion-contenido">
       <h1>🍎Lujuma's Recipe Book🍎</h1>
@@ -417,14 +309,12 @@
 
             <div class="fila-form">
               <label>Name 🥓🥑</label>
-              <input type="text" class="datos-ingreso">
-
+              <input type="text" class="datos-ingreso" [(ngModel)]="nuevoAlimento.nombre">
             </div>
 
             <div class="fila-form">
               <label>State 🍵</label>
-              <select class="datos-ingreso">
-                <option value="solido">It's a food</option>
+              <select class="datos-ingreso" [(ngModel)]="estadoAlimentoSeleccionado">   <option value="solido">It's a food</option>
                 <option value="liquido">It's a drink</option>
               </select>
 
@@ -433,8 +323,7 @@
             <div class="fila-form">
               <label>Sugars 🍫</label>
               <div class="input-con-unidad">
-                <input type="number" class="datos-ingreso">
-                <span class="unidad">g</span>
+                <input type="number" class="datos-ingreso" [(ngModel)]="nuevoAlimento.azucar">   <span class="unidad">g</span>
               </div>
 
             </div>
@@ -442,40 +331,35 @@
             <div class="fila-form">
               <label>Calories 🍜</label>
               <div class="input-con-unidad">
-                <input type="number" class="datos-ingreso">
-                <span class="unidad">kcal</span>
+                <input type="number" class="datos-ingreso" [(ngModel)]="nuevoAlimento.caloria">   <span class="unidad">kcal</span>
               </div>
             </div>
 
             <div class="fila-form">
               <label>Fats 🥑</label>
               <div class="input-con-unidad">
-                <input type="number" class="datos-ingreso">
-                <span class="unidad">g</span>
+                <input type="number" class="datos-ingreso" [(ngModel)]="nuevoAlimento.grasa">   <span class="unidad">g</span>
               </div>
             </div>
 
             <div class="fila-form">
               <label>Carbohydrates 🍚</label>
               <div class="input-con-unidad">
-                <input type="number" class="datos-ingreso">
-                <span class="unidad">g</span>
+                <input type="number" class="datos-ingreso" [(ngModel)]="nuevoAlimento.carbohidrato">  <span class="unidad">g</span>
               </div>
             </div>
 
             <div class="fila-form">
               <label>Protein 🥩</label>
               <div class="input-con-unidad">
-                <input type="number" class="datos-ingreso">
-                <span class="unidad">g</span>
+                <input type="number" class="datos-ingreso" [(ngModel)]="nuevoAlimento.proteina">  <span class="unidad">g</span>
               </div>
             </div>
 
             <p class="nota-formulario">All foods are defined for a portion of 100g (drinks 100ml)</p>
 
             <div class="contenedor-boton-centro">
-              <button class="btn-guardar">Save</button>
-            </div>
+              <button class="btn-guardar" (click)="registrarNuevoAlimento()">Save</button>    </div>
           </div>
         </div>
       </div>
@@ -483,22 +367,46 @@
 
     <!--Administrar mis recetas-->
     <div *ngIf="seccionActiva === 'manage-recipe'" class="seccion-contenido">
-    <h1>🍎Your recipes🍎</h1>
+      <h1>🍎 Your Recipes 🍎</h1>
+
       <div class="contenedor-alimento">
         <div class="contenedor-alimento-contenido">
-        <h2>😉🥞Fill your recipe information🍗🥨</h2>
+          <h2>😉🥞 Fill your recipe information 🍗🥨</h2>
 
-        <div class="formulario-comida">
+          <div class="formulario-comida">
 
-          <div class="fila-form">
-            <label>Name 🥓🥑</label>
-            <input type="text" class="datos-ingreso">
+            <div class="fila-form">
+              <label>Name 🥓🥑</label>
+              <input type="text" class="datos-ingreso" [(ngModel)]="nombreReceta" placeholder="e.g., Protein Pancakes">
+            </div>
+
+            <div class="fila-form">
+              <label>Select ingredients 🛒</label>
+              <select class="datos-ingreso" [(ngModel)]="idAlimentoSeleccionadoActual" (change)="alimentoCambioSelect()">
+                <option value="" disabled selected>-- Choose a food to add --</option>
+                <option *ngFor="let alimento of alimentosFiltradosParaSelect" [value]="alimento.idAlimento">
+                  {{ alimento.nombre }} ({{ alimento.caloria }} kcal / 100g)
+                </option>
+              </select>
+            </div>
+
+            <div class="contenedor-alimentos-recetas" *ngIf="alimentosAgregadosAReceta.length > 0">
+              <p class="subtitulo-alimentos-recetas">Ingredients in this recipe:</p>
+              <div class="lista-alimentos-recetas">
+            <span class="alimento-alimentos-recetas" *ngFor="let item of alimentosAgregadosAReceta">
+              {{ item.nombre }}
+              <button class="btn-remover-alimentos-recetas" (click)="removerAlimentoDeReceta(item)">×</button>
+            </span>
+              </div>
+            </div>
+
+            <div class="contenedor-boton-centro" style="margin-top: 25px;">
+              <button class="btn-guardar" (click)="registrarNuevaReceta()">Save Recipe</button>
+            </div>
+
           </div>
         </div>
-        </div>
-
       </div>
-
     </div>
     <!--Mi perfil-->
     <div *ngIf="seccionActiva === 'manage-user'" class="seccion-contenido">
