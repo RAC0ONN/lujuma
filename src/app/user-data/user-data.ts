@@ -76,7 +76,7 @@ export class UserData {
       // Se consume el servicio de registrar completo el usuario
       this.usuarioService.registrarCompleto(this.registroData).subscribe({
         next: (response) => {
-          alert('Successfully user creation');
+          alert('Successfully user creation,');
           this.mostrarConsentimiento = false;
           this.router.navigate(['/']);
         },
