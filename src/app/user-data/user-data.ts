@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService} from '../services/usuario.service';
-import { RegistroCompletoDTO} from '../models/registro-completo.dto';
+import { UsuarioService } from '../services/usuario.service';
+import { RegistroCompletoDTO } from '../models/registro-completo.dto';
 
 @Component({
   selector: 'app-user-data',
@@ -10,12 +10,10 @@ import { RegistroCompletoDTO} from '../models/registro-completo.dto';
   styleUrls: ['./user-data.css'],
 })
 export class UserData {
-  /*Se inicializa el usuario teniendxo en cuanta el molde definido en
-  * el registro completo, aqui estan los valores por defecto*/
-  pasoActual: number=1;
+  pasoActual: number = 1;
   mostrarConsentimiento: boolean = false;
   terminoAceptado: boolean = false;
-    registroData: RegistroCompletoDTO = {
+  registroData: RegistroCompletoDTO = {
     numeroDocumento: 0,
     tipoDocumento: 'CC',
     primerNombre: '',
@@ -36,47 +34,96 @@ export class UserData {
     correos: []
   };
   correoInput: string = '';
-  codigoPaisInput: string = '+57'
+  codigoPaisInput: string = '+57';
 
   constructor(
     private usuarioService: UsuarioService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
-  /*Funcion para avanzar en el formulario, el forumlario se divide en 3 partes
-  * entonces al recibir un evento de acda boton Next se avanza en el formulario*/
-  siguientePaso(){
-    if(this.pasoActual<3){
-      //Si es menor a 3 sigue con el siguiente paso
+  siguientePaso() {
+    if (this.pasoActual === 1) {
+      if (!this.registroData.primerNombre.trim() || !this.registroData.primerApellido.trim()) {
+        alert('First name and first lastname are required.');
+        return;
+      }
+      if (!this.registroData.fechaNacimiento) {
+        alert('Please select your birth date.');
+        return;
+      }
+
+      const idStr = String(this.registroData.numeroDocumento || '');
+      if (idStr.length !== 10 || isNaN(Number(idStr))) {
+        alert('The ID number must be exactly 10 digits.');
+        return;
+      }
+
+      if (this.registroData.altura <= 0 || String(this.registroData.altura).replace('.', '').length > 4) {
+        alert('Height must be a positive number and maximum 4 digits.');
+        return;
+      }
+
+      if (this.registroData.peso <= 0 || String(this.registroData.peso).replace('.', '').length > 4) {
+        alert('Weight must be a positive number and maximum 4 digits.');
+        return;
+      }
+
       this.pasoActual++;
-    }else if(this.pasoActual==3){
-      //Si es 3 abre el floatnte para el consentimiento
+    }
+    else if (this.pasoActual === 2) {
+      if (!this.correoInput.trim().toLowerCase().endsWith('@gmail.com')) {
+        alert('The email must end exactly with @gmail.com');
+        return;
+      }
+
+      const telStr = String(this.registroData.numeroTelefono || '');
+      if (telStr.length !== 10 || isNaN(Number(telStr))) {
+        alert('The phone number must be exactly 10 digits.');
+        return;
+      }
+
+      this.pasoActual++;
+    }
+    else if (this.pasoActual === 3) {
+      if (this.registroData.aguaDiaria < 0) {
+        alert('Daily water intake cannot be negative.');
+        return;
+      }
+      if (this.registroData.horaSuenio < 0) {
+        alert('Hours of sleep cannot be negative.');
+        return;
+      }
+      if (this.registroData.pasoDiario < 0) {
+        alert('Daily steps cannot be negative.');
+        return;
+      }
+      if (this.registroData.horaActividadDiaria < 0) {
+        alert('Hours of physical activity cannot be negative.');
+        return;
+      }
+
       this.mostrarConsentimiento = true;
     }
   }
-  /*Funcion para terminar el registro del usuario (datos,
-  * habitos y consentimiento. Se ajustan y acomodan todos los datos para
-  * que sean consistente con los esperados en la base*/
+
   finalizarRegistro() {
     if (this.terminoAceptado) {
       this.registroData.esAceptado = this.terminoAceptado;
 
-  // En el rpefijo numerico se quita el + y se une el indicadsor al numero
       const prefijo = this.codigoPaisInput.replace('+', '').replace('-', '');
       const numeroEscrito = this.registroData.numeroTelefono;
 
       if (numeroEscrito > 0) {
-        // Se concatenan ambas partes y se pasa a tipo de dato numerico
         this.registroData.numeroTelefono = Number(`${prefijo}${numeroEscrito}`);
       }
-      // Se agrega el correo a la lista de correos
+
       if (this.correoInput.trim() !== '') {
         this.registroData.correos = [this.correoInput.trim()];
       }
 
-      // Se consume el servicio de registrar completo el usuario
       this.usuarioService.registrarCompleto(this.registroData).subscribe({
         next: (response) => {
-          alert('Successfully user creation,');
+          alert('Successfully user creation.');
           this.mostrarConsentimiento = false;
           this.router.navigate(['/']);
         },
