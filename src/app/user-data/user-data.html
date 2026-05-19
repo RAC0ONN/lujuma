@@ -83,7 +83,6 @@
       <option value="+49">Alemania (+49)</option>
       <option value="+376">Andorra (+376)</option>
       <option value="+244">Angola (+244)</option>
-      <option value="+1-268">Antigua y Barbuda (+1-268)</option>
       <option value="+966">Arabia Saudita (+966)</option>
       <option value="+213">Argelia (+213)</option>
       <option value="+54">Argentina (+54)</option>
@@ -91,10 +90,8 @@
       <option value="+61">Australia (+61)</option>
       <option value="+43">Austria (+43)</option>
       <option value="+994">Azerbaiyán (+994)</option>
-      <option value="+1-242">Bahamas (+1-242)</option>
       <option value="+973">Baréin (+973)</option>
       <option value="+880">Bangladés (+880)</option>
-      <option value="+1-246">Barbados (+1-246)</option>
       <option value="+32">Bélgica (+32)</option>
       <option value="+501">Belice (+501)</option>
       <option value="+229">Benín (+229)</option>
@@ -126,7 +123,6 @@
       <option value="+385">Croacia (+385)</option>
       <option value="+53">Cuba (+53)</option>
       <option value="+45">Dinamarca (+45)</option>
-      <option value="+1-767">Dominica (+1-767)</option>
       <option value="+593">Ecuador (+593)</option>
       <option value="+20">Egipto (+20)</option>
       <option value="+503">El Salvador (+503)</option>
@@ -147,7 +143,6 @@
       <option value="+233">Ghana (+233)</option>
       <option value="+350">Gibraltar (+350)</option>
       <option value="+30">Grecia (+30)</option>
-      <option value="+1-473">Granada (+1-473)</option>
       <option value="+502">Guatemala (+502)</option>
       <option value="+224">Guinea (+224)</option>
       <option value="+245">Guinea-Bisáu (+245)</option>
@@ -163,7 +158,6 @@
       <option value="+354">Islandia (+354)</option>
       <option value="+972">Israel (+972)</option>
       <option value="+39">Italia (+39)</option>
-      <option value="+1-876">Jamaica (+1-876)</option>
       <option value="+81">Japón (+81)</option>
       <option value="+962">Jordania (+962)</option>
       <option value="+7">Kazajistán (+7)</option>
@@ -219,14 +213,11 @@
       <option value="+44">Reino Unido (+44)</option>
       <option value="+236">República Centroafricana (+236)</option>
       <option value="+420">República Checa (+420)</option>
-      <option value="+1-809">República Dominicana (+1-809)</option>
       <option value="+250">Ruanda (+250)</option>
       <option value="+40">Rumanía (+40)</option>
       <option value="+7">Rusia (+7)</option>
       <option value="+685">Samoa (+685)</option>
       <option value="+378">San Marino (+378)</option>
-      <option value="+1-869">San Cristóbal y Nieves (+1-869)</option>
-      <option value="+1-758">Santa Lucía (+1-758)</option>
       <option value="+239">Santo Tomé y Príncipe (+239)</option>
       <option value="+221">Senegal (+221)</option>
       <option value="+381">Serbia (+381)</option>
@@ -248,7 +239,6 @@
       <option value="+670">Timor Oriental (+670)</option>
       <option value="+228">Togo (+228)</option>
       <option value="+676">Tonga (+676)</option>
-      <option value="+1-868">Trinidad y Tobago (+1-868)</option>
       <option value="+216">Túnez (+216)</option>
       <option value="+993">Turkmenistán (+993)</option>
       <option value="+90">Turquía (+90)</option>
@@ -280,7 +270,6 @@
       <option value="INTENSE">Intense</option>
     </select>
   </div>
-  <div class="vaso"></div>
   <div class="centrado-boton">
     <button type="button" class="boton-siguiente" (click)="siguientePaso()">Next</button>
   </div>
@@ -291,9 +280,8 @@
 @if (pasoActual===3){
   <form name="apartado-habitos">
     <!--Apartado de ingesta del agua-->
-  <div class="vaso"></div>
     <div class="apartado-agua">
-      <label for="ingesta-agua">🫗️️How mucho water (mml) do you usually drink through the day</label>
+      <label for="ingesta-agua">🫗️️How mucho water (ml) do you usually drink through the day</label>
       <div class="grupo-input">
         <input type="number" name="aguaDiaria" [(ngModel)]="registroData.aguaDiaria">
         <span>ml</span>
@@ -344,8 +332,6 @@
         <p>By accessing and using our Services, you agree to these Terms and Conditions. If you do not agree, you must immediately stop using the Services.</p>
 
         <p><strong>Salchipapa con Lechona S.A.S.</strong> (“Company”, “we”, “us”, or “our”) operates <strong>Lujuma</strong>, a platform for tracking macronutrient consumption.</p>
-
-        <p>The Services are intended for users who are at least 13 years old. If you are a minor (under 18 in most jurisdictions), you must have permission and supervision from a parent or guardian.</p>
 
         <h3>1. Intellectual Property</h3>
         <p>All content, design, logos, and materials on Lujuma are the property of the Company or properly licensed. Copying, reproducing, distributing, or using them for commercial purposes without our express permission is strictly prohibited.</p>
