@@ -14,6 +14,7 @@ import { ComidaDTO, TipoComida } from '../models/comida.dto';
 export class UserMain implements OnInit {
   seccionActiva: string = 'dashboard';
   usuario: any = null;
+  mostrarGuiaBienvenida: boolean = false;
 
   /*Se inicializa el alimento teniendxo en cuanta el molde definido en
   * el registro completo, aqui estan los valores por defecto*/
@@ -44,7 +45,7 @@ export class UserMain implements OnInit {
     BREAKFAST: { tipo: 'BREAKFAST', caloria: 0, grasa: 0, carbohidrato: 0, proteina: 0, azucar: 0, idUsuario: 0 },
     LUNCH: { tipo: 'LUNCH', caloria: 0, grasa: 0, carbohidrato: 0, proteina: 0, azucar: 0, idUsuario: 0 },
     DINNER: { tipo: 'DINNER', caloria: 0, grasa: 0, carbohidrato: 0, proteina: 0, azucar: 0, idUsuario: 0 },
-    SNACKS: { tipo: 'SNACKS', caloria: 0, grasa: 0, carbohidrato: 0, proteina: 0, azucar: 0, idUsuario: 0 }
+    SNACK: { tipo: 'SNACK', caloria: 0, grasa: 0, carbohidrato: 0, proteina: 0, azucar: 0, idUsuario: 0 }
   };
 
 
@@ -65,16 +66,18 @@ export class UserMain implements OnInit {
       this.cargarAlimentosDisponibles();
       this.cargarComidasDelUsuario();
       this.cargarRecetasParaModal();
-
-      // 🚀 Aseguramos que la sección activa sea el dashboard desde el arranque
-      this.seccionActiva = 'dashboard';
+      this.cargarLibroDeRecetas();
+      this.inicializarDatosCalendario();
+      this.mostrarGuiaBienvenida = true;
+     this.seccionActiva = 'dashboard';
     } else {
       alert('Please sign in first.');
       this.router.navigate(['/']);
     }
   }
-
-  // --- MÉTODOS DE COMIDAS OPTIMIZADOS ---
+  cerrarGuiaBienvenida() {
+    this.mostrarGuiaBienvenida = false;
+  }
 
   cargarComidasDelUsuario() {
     this.usuarioService.obtenerComidasPorUsuario(this.usuario.idUsuario).subscribe({
@@ -98,7 +101,7 @@ export class UserMain implements OnInit {
   }
 
   resetearContadoresComidas() {
-    const tipos: TipoComida[] = ['BREAKFAST', 'LUNCH', 'DINNER', 'SNACKS'];
+    const tipos: TipoComida[] = ['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'];
     tipos.forEach(tipo => {
       this.comidasDelDia[tipo] = {
         idComida: undefined,
@@ -113,48 +116,38 @@ export class UserMain implements OnInit {
     });
      }
 
-// 2. Decide inteligentemente si guarda una nueva comida o añade recetas a una ya existente
-  guardarRecetasEnComida() {
+ guardarRecetasEnComida() {
     if (this.recetasSeleccionadasIds.length === 0) {
-      alert("Please select at least one recipe.");
+      alert("Please select at least one recipe");
       return;
     }
-
-    // Buscamos si este tipo de comida ya tiene un registro previo inspeccionando si posee un ID
     const comidaActual = this.comidasDelDia[this.tipoComidaSeleccionadaModal];
 
-    // Clonamos e inyectamos los nuevos valores y las recetas seleccionadas
-    const comidaDTO: ComidaDTO = {
+        const comidaDTO: ComidaDTO = {
       ...comidaActual,
       idUsuario: this.usuario.idUsuario,
       idRecetas: this.recetasSeleccionadasIds.map(id => Number(id)) // Forzar casteo a número
     };
 
-    // Si ya tiene idComida, llamamos a actualizar. Si no, a crearComida.
-    if (comidaActual.idComida) {
-      console.log('Actualizando comida existente en el Back...', comidaDTO);
-      // NOTA: Si no tienes el endpoint "actualizarComida" expuesto en tu UsuarioService,
-      // asegúrate de agregarlo apuntando a `${this.URL_COMIDA}/ActualizarComida` usando tu método http.put o http.post
-      this.usuarioService.crearComida(comidaDTO).subscribe({
+      if (comidaActual.idComida) {
+        this.usuarioService.crearComida(comidaDTO).subscribe({
         next: () => this.procesarRespuestaExitosa(),
         error: (err) => console.error(err)
       });
     } else {
-      console.log('Creando nuevo contenedor de comida en el Back...', comidaDTO);
-      this.usuarioService.crearComida(comidaDTO).subscribe({
+       this.usuarioService.crearComida(comidaDTO).subscribe({
         next: () => this.procesarRespuestaExitosa(),
         error: (err) => {
-          console.error('Error al guardar comida:', err);
-          alert('Could not save your meal selection.');
+           alert('Could not save your meal selection');
         }
       });
     }
   }
 
   procesarRespuestaExitosa() {
-    alert(`✔ Your ${this.tipoComidaSeleccionadaModal.toLowerCase()} macros have been synchronized!`);
+    alert(`Your ${this.tipoComidaSeleccionadaModal.toLowerCase()} macros have been synchronized😉!`);
     this.cerrarModalComida();
-    this.cargarComidasDelUsuario(); // 🚀 Recarga instantáneamente y pinta la sumatoria del Back
+    this.cargarComidasDelUsuario();
   }
 
   cargarRecetasParaModal() {
@@ -166,7 +159,7 @@ export class UserMain implements OnInit {
 
   abrirModalComida(tipo: TipoComida) {
     this.tipoComidaSeleccionadaModal = tipo;
-    this.recetasSeleccionadasIds = []; // Resetear selección anterior
+    this.recetasSeleccionadasIds = [];
     this.mostrarModalComida = true;
   }
 
@@ -174,12 +167,9 @@ export class UserMain implements OnInit {
     this.mostrarModalComida = false;
   }
 
-
-
-
-
   cambiarSeccion(target: string) {
     this.seccionActiva = target;
+
   }
   registrarNuevoAlimento() {
     if (!this.nuevoAlimento.nombre.trim()) {
@@ -187,26 +177,20 @@ export class UserMain implements OnInit {
       return;
     }
 
-    // Convertimos el estado del select HTML a la variable booleana esperada en el Back
-    this.nuevoAlimento.esLiquido = (this.estadoAlimentoSeleccionado === 'liquido');
+       this.nuevoAlimento.esLiquido = (this.estadoAlimentoSeleccionado === 'liquido');
 
-    console.log('Enviando alimento al servidor...', this.nuevoAlimento);
-
-    this.usuarioService.guardarAlimento(this.nuevoAlimento).subscribe({
+     this.usuarioService.guardarAlimento(this.nuevoAlimento).subscribe({
       next: (res) => {
-        console.log('Respuesta del servidor:', res);
-        alert(`✔ Success: ${this.nuevoAlimento.nombre} has been saved successfully.`);
+          alert(`Success: ${this.nuevoAlimento.nombre} has been saved successfully🧀.`);
         this.limpiarFormularioAlimento();
       },
       error: (err) => {
-        console.error('Error al guardar el alimento:', err);
-        alert('Could not save food: ' + (err.error?.message || err.message));
+          alert('Could not save food: ' + (err.error?.message || err.message));
       }
     });
   }
 
-  // Resetea los campos del formulario para un nuevo ingreso
-  limpiarFormularioAlimento() {
+   limpiarFormularioAlimento() {
     this.nuevoAlimento = {
       nombre: '',
       esLiquido: false,
@@ -220,67 +204,52 @@ export class UserMain implements OnInit {
     };
     this.estadoAlimentoSeleccionado = 'solido';
   }
-// Trae los alimentos de la BD y los prepara
   cargarAlimentosDisponibles() {
     this.usuarioService.obtenerTodosLosAlimentos().subscribe({
       next: (alimentos) => {
         this.alimentosDelSistema = alimentos;
-        // Opcional: Si quieres que el usuario solo vea sus propios alimentos, puedes descomentar la siguiente línea:
-        // this.alimentosDelSistema = alimentos.filter(a => a.idUsuario === this.usuario.idUsuario);
 
         this.alimentosFiltradosParaSelect = [...this.alimentosDelSistema];
       },
-      error: (err) => console.error('Error cargando alimentos para recetas:', err)
+      error: (err) => console.error('eRROR', err)
     });
   }
 
-  // 🚀 Se ejecuta cuando el usuario selecciona un alimento en el desplegable
-  alimentoCambioSelect() {
+   alimentoCambioSelect() {
     if (!this.idAlimentoSeleccionadoActual) return;
 
     const idBuscado = Number(this.idAlimentoSeleccionadoActual);
     const alimentoEncontrado = this.alimentosFiltradosParaSelect.find(a => a.idAlimento === idBuscado);
 
     if (alimentoEncontrado) {
-      // 1. Lo metemos en el arreglo de los chips visuales
-      this.alimentosAgregadosAReceta.push(alimentoEncontrado);
+       this.alimentosAgregadosAReceta.push(alimentoEncontrado);
 
-      // 2. Lo removemos del select para que no lo escoja dos veces por duplicado
-      this.alimentosFiltradosParaSelect = this.alimentosFiltradosParaSelect.filter(a => a.idAlimento !== idBuscado);
+       this.alimentosFiltradosParaSelect = this.alimentosFiltradosParaSelect.filter(a => a.idAlimento !== idBuscado);
     }
 
-    // Reseteamos el valor por defecto del select
-    this.idAlimentoSeleccionadoActual = '';
+     this.idAlimentoSeleccionadoActual = '';
   }
 
-  // 🚀 Se ejecuta al darle clic a la (X) del chip
-  removerAlimentoDeReceta(alimento: AlimentoDTO) {
-    // 1. Lo sacamos de la lista de chips
-    this.alimentosAgregadosAReceta = this.alimentosAgregadosAReceta.filter(a => a.idAlimento !== alimento.idAlimento);
-
-    // 2. Lo devolvemos al select para que vuelva a estar disponible
-    this.alimentosFiltradosParaSelect.push(alimento);
-    // Ordenamos alfabéticamente el select de nuevo
-    this.alimentosFiltradosParaSelect.sort((a, b) => a.nombre.localeCompare(b.nombre));
+   removerAlimentoDeReceta(alimento: AlimentoDTO) {
+     this.alimentosAgregadosAReceta = this.alimentosAgregadosAReceta.filter(a => a.idAlimento !== alimento.idAlimento);
+     this.alimentosFiltradosParaSelect.push(alimento);
+     this.alimentosFiltradosParaSelect.sort((a, b) => a.nombre.localeCompare(b.nombre));
   }
 
-  // 🚀 Procesa el guardado completo de la Receta Creada
   registrarNuevaReceta() {
     if (!this.nombreReceta.trim()) {
-      alert('Please enter a name for your recipe.');
+      alert('Please enter a name for your recipe🍜');
       return;
     }
 
     if (this.alimentosAgregadosAReceta.length === 0) {
-      alert('Your recipe must contain at least one food.');
+      alert('Your recipe must contain at least one food🍵');
       return;
     }
 
-    // Mapeamos los objetos de alimentos agregados a un simple vector purificado de IDs númericos
-    const listaIds: number[] = this.alimentosAgregadosAReceta.map(a => a.idAlimento!);
+     const listaIds: number[] = this.alimentosAgregadosAReceta.map(a => a.idAlimento!);
 
-    // Formateamos la fecha a estricto YYYY-MM-DD para java.sql.Date
-    const fechaHoyStr = new Date().toISOString().substring(0, 10);
+     const fechaHoyStr = new Date().toISOString().substring(0, 10);
 
     const nuevaRecetaDTO: RecetaCreadaDTO = {
       nombre: this.nombreReceta.trim(),
@@ -289,16 +258,13 @@ export class UserMain implements OnInit {
       idAlimentos: listaIds
     };
 
-    console.log('Despachando receta al Back-End...', nuevaRecetaDTO);
-
     this.usuarioService.guardarRecetaCreada(nuevaRecetaDTO).subscribe({
       next: (res) => {
-        alert(`✔ Recipe "${nuevaRecetaDTO.nombre}" successfully saved with its macro breakdown!`);
+        alert(`Recipe "${nuevaRecetaDTO.nombre}" successfully saved🍜!`);
         this.limpiarFormularioReceta();
       },
       error: (err) => {
-        console.error('Error al guardar receta:', err);
-        alert('Could not save recipe: ' + (err.error?.message || err.message));
+         alert('Could not save recipe: ' + (err.error?.message || err.message));
       }
     });
   }
@@ -310,48 +276,40 @@ export class UserMain implements OnInit {
     this.alimentosFiltradosParaSelect = [...this.alimentosDelSistema];
   }
 
-  //Metodos para el calculo de macronutrientes ingeridos y faltantes
-  get totalCaloriasConsumidas(): number {
+   get totalCaloriasConsumidas(): number {
     return (this.comidasDelDia['BREAKFAST']?.caloria || 0) +
       (this.comidasDelDia['LUNCH']?.caloria || 0) +
       (this.comidasDelDia['DINNER']?.caloria || 0) +
-      (this.comidasDelDia['SNACKS']?.caloria || 0);
+      (this.comidasDelDia['SNACK']?.caloria || 0);
   }
 
   get totalGrasasConsumidas(): number {
     return (this.comidasDelDia['BREAKFAST']?.grasa || 0) +
       (this.comidasDelDia['LUNCH']?.grasa || 0) +
       (this.comidasDelDia['DINNER']?.grasa || 0) +
-      (this.comidasDelDia['SNACKS']?.grasa || 0);
+      (this.comidasDelDia['SNACK']?.grasa || 0);
   }
 
   get totalCarbohidratosConsumidos(): number {
     return (this.comidasDelDia['BREAKFAST']?.carbohidrato || 0) +
       (this.comidasDelDia['LUNCH']?.carbohidrato || 0) +
       (this.comidasDelDia['DINNER']?.carbohidrato || 0) +
-      (this.comidasDelDia['SNACKS']?.carbohidrato || 0);
+      (this.comidasDelDia['SNACK']?.carbohidrato || 0);
   }
 
   get totalProteinasConsumidas(): number {
     return (this.comidasDelDia['BREAKFAST']?.proteina || 0) +
       (this.comidasDelDia['LUNCH']?.proteina || 0) +
       (this.comidasDelDia['DINNER']?.proteina || 0) +
-      (this.comidasDelDia['SNACKS']?.proteina || 0);
+      (this.comidasDelDia['SNACK']?.proteina || 0);
   }
 
   get totalAzucarConsumidas(): number {
     return (this.comidasDelDia['BREAKFAST']?.azucar || 0) +
       (this.comidasDelDia['LUNCH']?.azucar || 0) +
       (this.comidasDelDia['DINNER']?.azucar || 0) +
-      (this.comidasDelDia['SNACKS']?.azucar || 0);
+      (this.comidasDelDia['SNACK']?.azucar || 0);
   }
-
-  // 2. Métodos para obtener lo FALTANTE (Objetivo - Consumido)
-  // Usamos Math.max(0, ...) para evitar que salgan números negativos si el usuario se pasa de su meta
-
-
-
-  // --- 🚀 MÉTODOS GET RECOLECTORES Y REACTIVOS ---
 
   get caloriasFaltantes(): number {
     const objetivo = Number(this.usuario?.caloria) || 0;
@@ -377,4 +335,180 @@ export class UserMain implements OnInit {
     const objetivo = Number(this.usuario?.azucar) || 0;
     return Math.max(0, objetivo - this.totalAzucarConsumidas);
   }
+
+  // Libro de recetas
+  listaRecetasPredeterminadas: any[] = [];
+  paginaActual: number = 0;
+
+    cargarLibroDeRecetas() {
+    this.usuarioService.obtenerRecetasPredeterminadas().subscribe({
+      next: (recetas) => {
+        this.listaRecetasPredeterminadas = recetas;
+          },
+      error: (err) => console.error('Error :', err)
+    });
+  }
+//Para pasar las paginas del libro
+  paginaSiguiente() {
+    if (this.paginaActual < this.listaRecetasPredeterminadas.length) {
+      this.paginaActual++;
+    }
+  }
+
+  paginaAnterior() {
+    if (this.paginaActual > 0) {
+      this.paginaActual--;
+    }
+  }
+ get recetaActiva(): any {
+    if (this.paginaActual === 0 || this.listaRecetasPredeterminadas.length === 0) {
+      return null;
+    }
+    return this.listaRecetasPredeterminadas[this.paginaActual - 1];
+  }
+
+  //Metodos opara los reportes
+  mostrarModalReporte: boolean = false;
+  listaReportes: any[] = [];
+
+  navegarASeccion(target: string) {
+    this.seccionActiva = target;
+  }
+
+  abrirModalReporte() {
+    this.mostrarModalReporte = true;
+  }
+
+  cerrarModalReporte() {
+    this.mostrarModalReporte = false;
+  }
+
+  confirmarYGenerarReporte() {
+    if (!this.usuario || !this.usuario.idUsuario) {
+      alert('User session not found. Please log in again.');
+      return;
+    }
+
+    const idUsuario = this.usuario.idUsuario;
+    const idComidasActuales: number[] = [];
+    const ahora = new Date();
+
+    const infoReporte = `Your macronutrients intakes has been of: ${this.totalCaloriasConsumidas} kcal (Proteins: ${this.totalProteinasConsumidas}g, Carbs: ${this.totalCarbohidratosConsumidos}g, Fats: ${this.totalGrasasConsumidas}g, Sugar: ${this.totalAzucarConsumidas}g)`;
+
+    const reporteDTO = {
+      fecha: ahora,
+      informacion: infoReporte,
+      idUsuario: idUsuario
+    };
+
+    this.usuarioService.guardarReporte(reporteDTO, idComidasActuales).subscribe({
+      next: (response) => {
+
+        this.cerrarModalReporte();
+
+        this.listaReportes = [{
+          idReporte: response?.idReporte || 1,
+          fecha: response?.fecha ? new Date(response.fecha).toLocaleString() : ahora.toLocaleString(),
+          informacion: response?.informacion || infoReporte
+        }];
+
+        alert('Report successfully generated!');
+      },
+      error: (err) => {
+        alert('Could not save the report');
+      }
+    });
+  }
+// Metodos para el reporte
+  fechaActual: Date = new Date();
+  diaSeleccionado: number = new Date().getDate();
+  mesSeleccionadoIndex: number = new Date().getMonth();
+  anioSeleccionado: number = new Date().getFullYear();
+
+  diasDelMes: number[] = [];
+  espaciosBlancosInicio: number[] = [];
+
+  datosCalendarioBack: any = null;
+  reportesDelDiaSeleccionado: any[] = [];
+
+  mesesAnio: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  diasSemana: string[] = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+  inicializarDatosCalendario() {
+    if (!this.usuario || !this.usuario.idUsuario) return;
+
+    this.usuarioService.obtenerCalendarioPorUsuario(this.usuario.idUsuario).subscribe({
+      next: (data) => this.datosCalendarioBack = data,
+      error: (err) => console.error('Error Calendario DTO:', err)
+    });
+
+    this.usuarioService.obtenerReportes(this.usuario.idUsuario).subscribe({
+      next: (reportes) => {
+        if (reportes) {
+          this.listaReportes = reportes;
+          this.generarCalendarioMalla();
+          this.seleccionarDia(this.diaSeleccionado);
+        }
+      }
+    });
+  }
+
+  generarCalendarioMalla() {
+    this.diasDelMes = [];
+    this.espaciosBlancosInicio = [];
+
+    const primerDia = new Date(this.anioSeleccionado, this.mesSeleccionadoIndex, 1);
+
+    const ultimoDia = new Date(this.anioSeleccionado, this.mesSeleccionadoIndex + 1, 0);
+
+     const diaSemanaInicio = primerDia.getDay();
+    for (let i = 0; i < diaSemanaInicio; i++) {
+      this.espaciosBlancosInicio.push(i);
+    }
+
+    const totalDias = ultimoDia.getDate();
+    for (let d = 1; d <= totalDias; d++) {
+      this.diasDelMes.push(d);
+    }
+  }
+
+  seleccionarDia(dia: number) {
+    this.diaSeleccionado = dia;
+    this.reportesDelDiaSeleccionado = this.listaReportes.filter(rep => {
+      if (!rep.fecha) return false;
+      const f = new Date(rep.fecha);
+      return f.getDate() === dia &&
+        f.getMonth() === this.mesSeleccionadoIndex &&
+        f.getFullYear() === this.anioSeleccionado;
+    });
+  }
+
+  diaTieneReporte(dia: number): boolean {
+    return this.listaReportes.some(rep => {
+      if (!rep.fecha) return false;
+      const f = new Date(rep.fecha);
+      return f.getDate() === dia &&
+        f.getMonth() === this.mesSeleccionadoIndex &&
+        f.getFullYear() === this.anioSeleccionado;
+    });
+  }
+
+  cambiarMes(direccion: number) {
+    this.mesSeleccionadoIndex += direccion;
+    if (this.mesSeleccionadoIndex > 11) {
+      this.mesSeleccionadoIndex = 0;
+      this.anioSeleccionado++;
+    } else if (this.mesSeleccionadoIndex < 0) {
+      this.mesSeleccionadoIndex = 11;
+      this.anioSeleccionado--;
+    }
+    this.generarCalendarioMalla();
+    this.seleccionarDia(1);
+  }
+
+
+
+
+
+
 }

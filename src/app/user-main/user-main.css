@@ -336,6 +336,139 @@ de */
   box-shadow: 0 4px 15px rgba(138, 25, 25, 0.3);
   transform: scale(1.3);
 }
+
+.contenido-receta-interior {
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  color: black;
+}
+
+.encabezado-receta h2 {
+  font-size: 2.5rem;
+  color: #8A1919;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.tiempo-preparacion {
+  background-color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: black;
+}
+
+.etiquetas-receta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.etiqueta {
+
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+
+
+.ingredientes-receta {
+  margin-top: 15px;
+}
+
+.ingredientes-receta h3 {
+  border-bottom: 2px solid #8A1919;
+  padding-bottom: 5px;
+  color: #333333;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.lista-ingredientes {
+  list-style: none; /* Quitamos las viñetas feas por defecto */
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Divide los ingredientes en 2 columnas fijas si hay espacio */
+  gap: 8px;
+}
+
+.lista-ingredientes li {
+  font-size: 1rem;
+  color: #444444;
+  padding: 4px 0;
+  border-bottom: 1px dashed #e0e0e0; /* Una sutil línea divisoria */
+}
+
+.porcion-texto {
+  color: #8A1919;
+  font-weight: bold;
+}
+
+/* Ajuste al contenedor de instrucciones para que compartan espacio de forma fluida */
+.instrucciones-receta {
+  margin-top: 20px;
+}
+/*Estilos para la tabla de macros*/
+.tabla-macros-receta {
+  width: 100%;
+
+  margin: 15px 0;
+  background-color: white;
+  border-bottom: 2px solid black;
+  border-radius: 6px;
+}
+
+
+.tabla-macros-receta td {
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
+
+/* Estilos para la preparacion de la recepta*/
+.instrucciones-receta {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 15px;
+  padding-right: 10px;
+}
+
+.instrucciones-receta h3 {
+  border-bottom: 2px solid #8A1919;
+  padding-bottom: 5px;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.instrucciones-receta p {
+  line-height: 1.6;
+  font-size: 1.2rem;
+  text-align: justify;
+  color: black;
+}
+
+/* Botones deshabiolitados*/
+.btn-circular:disabled {
+  border-color: #cccccc;
+  color: #cccccc;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+  background-color: #f5f5f5;
+}
+
+
+
+
+
 /*Apartado de manejar alimentos*/
 
 h2{
@@ -518,6 +651,11 @@ h2{
   margin-bottom: 8px;
 }
 
+.btn-remover-chip:hover {
+  color: #ff1a1a;
+  transform: scale(1.1);
+}
+
 .lista-chips {
   display: flex;
   flex-wrap: wrap;
@@ -541,20 +679,7 @@ h2{
   background: transparent;
   border: none;
   color: red;
-  font-size: 1.1rem;
-  margin-left: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2px;
-  font-weight: bold;
-  transition: color 0.2s ease;
-}
-
-.btn-remover-chip:hover {
-  color: #ff1a1a;
-  transform: scale(1.1);
+  font-size: 1.1r
 }
 
 /*Estilos de el campo flotante de comida*/
@@ -675,4 +800,566 @@ h2{
     opacity: 1;
   }
 }
-/*Estilos para los macronutrientes faltantes*/
+
+/*REstilos del apartado de reporttes*/
+.reportes-explicacion {
+  color: black;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: Gadugi, sans-serif;
+  margin-top: 100px;
+}
+
+.caja-accion-boton {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 60px;
+  font-family: Gadugi, sans-serif;
+}
+
+.boton-crear-reporte {
+  background-color: #2e7d32;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.3s ease;
+  font-family: Gadugi, sans-serif;
+}
+
+.boton-crear-reporte:hover {
+  background-color: #c62828;
+  transform: scale(1.08);
+}
+
+.boton-crear-reporte:active {
+  transform: scale(0.98);
+}
+
+.bloque-tarjeta-visible {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  animation: fadeIn 0.3s ease-out;
+  font-family: Gadugi, sans-serif;
+}
+
+.cuadro-reporte-unico {
+  background: #ffffff;
+  border: 4px solid black;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 650px;
+  overflow: hidden;
+  font-family: Gadugi, sans-serif;
+}
+
+.cabecera-cuadro-unico {
+  background-color: #fafafa;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid black;
+  font-family: Gadugi, sans-serif;
+}
+
+.etiqueta-estado-ok {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: Gadugi, sans-serif;
+}
+
+.texto-fecha-snapshot {
+  font-size: 1.5em;
+  color: black;
+  font-weight: 600;
+  font-family: Gadugi, sans-serif;
+}
+
+.cuerpo-cuadro-unico {
+  padding: 20px;
+  background-color: #ffffff;
+  font-family: Gadugi, sans-serif;
+}
+
+.parrafo-macros-data {
+  margin: 0;
+  color: #111111;
+  font-size: 1.5em;
+  line-height: 1.5;
+  font-family: Gadugi, sans-serif;
+}
+
+.pantalla-oscura-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  font-family: Gadugi, sans-serif;
+}
+
+.ventana-alerta-emergente {
+  background: #ffffff;
+  width: 90%;
+  max-width: 460px;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  border: 4px solid black;
+  animation: slideUp 0.25s ease-out;
+  font-family: Gadugi, sans-serif;
+}
+
+.icono-alerta-decorativo {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-family: Gadugi, sans-serif;
+}
+
+.ventana-alerta-emergente h2 {
+  font-size: 1.5em;
+  color: #111111;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-family: Gadugi, sans-serif;
+}
+
+.mensaje-alerta-principal {
+  font-size: 1.5em;
+  color: #333333;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  font-family: Gadugi, sans-serif;
+}
+
+.mensaje-alerta-secundario {
+  font-size: 1.2em;
+  color: black;
+  background-color: #f5f5f5;
+  padding: 12px;
+  border-radius: 6px;
+
+  line-height: 1.4;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: Gadugi, sans-serif;
+}
+
+.bloque-botones-modal {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-family: Gadugi, sans-serif;
+}
+
+.bloque-botones-modal button {
+  padding: 10px 25px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.15s ease, transform 0.3s ease;
+  font-family: Gadugi, sans-serif;
+}
+
+.bloque-botones-modal button:hover {
+  transform: scale(1.08);
+}
+
+.bloque-botones-modal button:active {
+  transform: scale(0.98);
+}
+
+.boton-modal-cancelar {
+  background-color: #e0e0e0;
+  color: #333333;
+}
+
+.boton-modal-cancelar:hover {
+  background-color: #d5d5d5;
+}
+
+.boton-modal-aceptar {
+  background-color: #2e7d32;
+  color: #ffffff;
+}
+
+.boton-modal-aceptar:hover {
+  background-color: #1b5e20;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+
+
+/*Estilos del calendario*/
+
+.calendario-titulito {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.calendario-subtitulito {
+  text-align: center;
+  color: black;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  font-weight: bold;
+  font-family: Gadugi, sans-serif;
+}
+
+.calendario-base-fija {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-family: 'Kanit', sans-serif;
+}
+
+.calendario-caja-lujuma {
+  display: flex;
+  width: 900px;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+/*Panel izquierdo del calendario*/
+.calendario-bloque-izquierdo {
+  width: 300px;
+  height: 100%;
+  background-color: #2e7d32;
+  color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.numero-grandote {
+  font-size: 80px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  margin-top: 5px;
+  color: white;
+}
+
+.texto-dia-semana {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.texto-ano-izquierdo {
+  text-align: center;
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* Panel derecho del calendario */
+.calendario-bloque-derecho {
+  width: 600px;
+  height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.barra-navegacion-meses {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.texto-mes-ano-titulo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333333;
+  letter-spacing: 0.5px;
+}
+
+.flechita-mes-btn {
+  background: none;
+  border: none;
+  color: #2e7d32;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 14px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.flechita-mes-btn:hover {
+  background: rgba(46, 125, 50, 0.1);
+}
+
+.fila-letras-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.malla-numeros-dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 14px;
+  text-align: center;
+}
+
+.bolita-dia-click {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  color: black;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.bolita-dia-click:hover {
+  background: rgba(46, 125, 50, 0.1);
+  color: #2e7d32;
+}
+
+.dia-marcadito-ui {
+  background: #2e7d32 !important;
+  color: #ffffff !important;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+}
+
+.espacio-vacio-dia {
+  visibility: hidden;
+}
+/*Indica los dias que se generaron reportes*/
+.puntito-alerta-reporte {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #c62828;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.panel-scroll-lujuma {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 5px;
+  margin-top: 5px;
+  flex-grow: 1;
+}
+
+.texto-snapshots-titulo {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.tarjetita-reporte-scroll {
+  list-style: none;
+  background-color: white;
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 2rem;
+}
+
+.etiqueta-reporte-mini {
+  font-size: 0.7rem;
+  background: white;
+  color: black;
+  font-weight: bold;
+  padding: 1px 5px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 3px;
+  font-size: 1.2rem;
+}
+
+.detalle-reporte-mini {
+  margin: 0;
+  line-height: 1.3;
+  color: black;
+  font-size: 1rem;
+}
+
+.mensaje-sin-registros {
+  font-style: 'Gadugi';
+  opacity: 0.7;
+  font-size: 1rem;
+}
+
+.cajita-totales-back {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 12px;
+  font-size: 1rem;
+}
+
+.cajita-totales-back p {
+  margin: 3px 0;
+}
+
+.etiqueta-totales-titulo {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2e7d32;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+ /*Estilos del tetxto de bienvenidoa de uso de lujuma*/
+
+.contenedor-consentimiento-principal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+  font-family: Gadugi, sans-serif;
+}
+
+.contenedor-consentimiento {
+  background-color: #ffffff;
+  width: 85%;
+  max-width: 800px;
+  height: 85vh;
+  border: 4px solid black;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.texto-consentimiento {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 15px;
+  margin-bottom: 20px;
+}
+
+
+.texto-consentimiento h2 {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-family: Gadugi, sans-serif;
+}
+
+.texto-consentimiento h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-family: Gadugi, sans-serif;
+}
+
+.texto-consentimiento p {
+  font-size: 1.5em;
+  color: black;
+  line-height: 1.5;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: justify;
+  font-family: Gadugi, sans-serif;
+}
+
+.texto-consentimiento a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.texto-consentimiento a:hover {
+  text-decoration: underline;
+}
+
+.opciones-consentimiento {
+  display: flex;
+  justify-content: center;
+  border-top: 4px solid black;
+  padding-top: 15px;
+  margin-top: auto;
+  font-family: Gadugi, sans-serif;
+}
+
+.btn-guia-entrar {
+  background-color: #2e7d32;
+  color: #ffffff;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.3s ease;
+  font-family: Gadugi, sans-serif;
+}
+
+.btn-guia-entrar:hover {
+  background-color: #c62828;
+  transform: scale(1.08);
+}
+
+.btn-guia-entrar:active {
+  transform: scale(0.96);
+}

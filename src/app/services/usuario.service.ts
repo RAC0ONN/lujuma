@@ -23,6 +23,14 @@ export class UsuarioService {
   private URL_RECETA='http://localhost:8080/RecetaCreada';
   // Esta es la url base de comida
   private URL_COMIDA='http://localhost:8080/Comida';
+  // Esta es la url base de receta predeterminada
+  private URL_RECETA_PREDETERMINADA='http://localhost:8080/RecetaPredeterminada';
+// Esta es la url base de el reporte
+  private URL_REPORTE='http://localhost:8080/Reporte';
+  // Esta es la url base de el calendario
+  private URL_CALENDARIO='http://localhost:8080/Calendario';
+
+
 
   constructor(private http: HttpClient) { }
 
@@ -66,4 +74,28 @@ export class UsuarioService {
   obtenerRecetas(): Observable<RecetaCreadaDTO[]> {
     return this.http.get<RecetaCreadaDTO[]>(`${this.URL_RECETA}/ObtenerRecetas`);
   }
+
+  //Endpoint para obtener las recettas predeterminadas
+  obtenerRecetasPredeterminadas(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.URL_RECETA_PREDETERMINADA}/ObtenerRecetas`);
+  }
+
+  //Endpoint oara general los reportes
+  guardarReporte(reporte: any, idComidas: number[]): Observable<any> {
+    let params = '';
+    if (idComidas && idComidas.length > 0) {
+      params = `?idComidas=${idComidas.join(',')}`;
+    }
+    return this.http.post<any>(`${this.URL_REPORTE}/CrearReporte${params}`, reporte);
+  }
+  obtenerReportes(idUsuario: number): Observable<any[]> {
+    const params = new HttpParams().set('idUsuario', idUsuario.toString());
+    return this.http.get<any[]>(`${this.URL_REPORTE}/ObtenerReportes`, { params });
+  }
+
+  obtenerCalendarioPorUsuario(idUsuario: number): Observable<any> {
+    const params = new HttpParams().set('idUsuario', idUsuario.toString());
+    return this.http.get<any>(`${this.URL_CALENDARIO}/ObtenerCalendario`, { params });
+  }
+
 }

@@ -38,8 +38,8 @@
 
 
       <!--Boton de generar reporte-->
-      <a href="http://marcel-pirnay.be/" class="btn">
-        <svg width="277" height="62">
+      <a (click)="cambiarSeccion('report')" class="btn" [class.active-btn]="seccionActiva === 'report'">
+      <svg width="277" height="62">
           <defs>
             <linearGradient id="grad1">
               <stop offset="0%" stop-color="#FF8282"/>
@@ -52,7 +52,7 @@
         <span>Generate a report</span>
       </a>
       <!--Boton de calendario-->
-      <a href="http://marcel-pirnay.be/" class="btn">
+      <a (click)="cambiarSeccion('calendar')" class="btn" [class.active-btn]="seccionActiva === 'calendar'">
         <svg width="277" height="62">
           <defs>
             <linearGradient id="grad1">
@@ -113,6 +113,51 @@
     </nav>
   </aside>
   <main class="contenido-derecha">
+
+    <!--Guia de uso de lujuma-->
+    <div *ngIf="mostrarGuiaBienvenida" class="contenedor-consentimiento-principal">
+      <div class="contenedor-consentimiento">
+
+        <div class="texto-consentimiento">
+          <h2>PLEASE TAKE A MOMENT TO READ THIS</h2>
+          <p>Welcome to Lujuma, dear user💗! First of all, thanks for choosing us to be with you in this journey of healthcare and more mindful meals. Remember, healthy comes first and Lujuma will help you to track all your macronutrients intake through the meals you eat.</p>
+
+          <h3>🧐IMPORTANT REMINDER</h3>
+          <p><strong>IMPORTANT:</strong> Lujuma is a platform based only on approximations and we don't know your exact mental or health state, so we always encourage you to contact a professional if it's needed. We know it's kind of confusing, so let us explain. In Lujuma you have sections on the left side: Main, Go to recipe book, Generate a report, My calendar, Manage my foods, Manage my recipes, and My profile. So, what do you do in each one?</p>
+
+          <h3>🍜1. Main Dashboard</h3>
+          <p>Let us start with Main. Main is the overview dashboard type of page where all your general macronutrients intake is displayed. In the upper part, you have each macronutrient with its total intake, the consumed intake (that is what you have eaten), and the missing intake (basically how much is missing; if it's zero, you have already eaten the defined intake).</p>
+          <p>Now let's continue with the bottom part: <strong>THE MEALS</strong>. Basically, you have each meal organized into breakfast, lunch, dinner, and snacks, and a button to add. Well, this button is to add <strong>ONLY</strong> recipes. So, before clicking here, add the recipe that you want in the section of manage my recipes. And to create a recipe, you have to first add the food. So, this is the order: <strong>food ➡recipe ➡ meal</strong>, and finally you can add your whole meal. Well, in these cards you see the overview of your consumed macronutrients on that food.</p>
+
+          <h3>🍵2. Recipe Book</h3>
+          <p>Let's move to the recipe book. Lujuma wants to give you a guide and more ideas with your food. <strong>EATING HEALTHY IS NOT EATING DELICIOUS AND WORST NOT EATING AT ALL!</strong> Your body needs all macronutrients, even sugars, so please be mindful about that. So, in this recipe book we show you some recipes that we considered are delicious and easy to make. You can see the macronutrients value of each one, the time that it takes to prepare it, and some tags that identify the food (for example, for a vegan diet) with the general preparation. If you'd like to suggest more recipes, feel free to contact us through our email: <a href="mailto:salchipapaconlechona@gmail.com">salchipapaconlechona&#64;gmail.com</a>.</p>
+
+          <h3>🥨3. Generate a Report</h3>
+          <p>And let's move to generate a report. Lujuma wants to give you a place where you can save your records, so in this section, click the button <strong>"Generate a report"</strong> to create a snapshot of the macronutrients intake at that exact moment. You can generate as many as you want throughout the day!</p>
+
+          <h3>🧀4. My Calendar</h3>
+          <p>Nowww the calendar! Here you have an overview of all those reports that you have made so you can see your history. The red dot indicates the days that have reports.</p>
+
+          <h3>🥓5. Manage Food</h3>
+          <p>Now the manage food section. Here you can enter all the information about your food. Remember to be exact and remember that the defined portion is <strong>ALWAYS 100G OR 100ML</strong>. If you want to have a larger portion, feel free to add that food more times in the recipe.</p>
+
+          <h3>🎂6. Manage Recipes</h3>
+          <p>Now the manage recipes section. <strong>REMEMBER THE HIERARCHY: food ➡recipe ➡meal</strong>. To make a meal, you have to have the recipe, and to have a recipe, you have to add the foods. So, once you have added the needed foods, create your recipe with the name you'd like to give it.</p>
+
+          <h3>A TIP: System Synchronization & Profile</h3>
+          <p>Lujuma is a platform in construction, so if at some point your information doesn't seem to be consistent or is not updated, just click again on the section where you are. For example, if the macronutrients in main are 0, just click again on the Main section. That will solve it!</p>
+          <p>And lastly, your profile. Here you can edit your own information. The macronutrients intake will calculate automatically, and that is it! Thank you for being here again. Enjoy Lujuma, a platform made by people like you, for people like you!💗</p>
+        </div>
+
+        <div class="opciones-consentimiento">
+          <button class="btn-guia-entrar" (click)="cerrarGuiaBienvenida()">
+            OK, let me start!
+          </button>
+        </div>
+
+      </div>
+    </div>
+
     <!--Sección principal-->
     <div *ngIf="seccionActiva === 'dashboard'">
 
@@ -233,7 +278,7 @@
   <!--Snacks-->
   <div class="contenedor-comidas">
     <div class="boton-agregar-comida">
-      <button (click)="abrirModalComida('SNACKS')">+</button>
+      <button (click)="abrirModalComida('SNACK')">+</button>
     </div>
     <div class="titulo-comida">
       <p>Snacks</p>
@@ -244,11 +289,11 @@
     <div class="fila-comida-meta">
       <span>Current Intake</span>
     </div>
-      <div class="fila-comida"><span>Calories: <strong>{{comidasDelDia['SNACKS'].caloria}} kcal</strong></span></div>
-      <div class="fila-comida"><span>Fats: <strong>{{comidasDelDia['SNACKS'].grasa}}g</strong></span></div>
-      <div class="fila-comida"><span>Carbohydrates: <strong>{{comidasDelDia['SNACKS'].carbohidrato}}g</strong></span></div>
-      <div class="fila-comida"><span>Proteins: <strong>{{comidasDelDia['SNACKS'].proteina}}g</strong></span></div>
-      <div class="fila-comida"><span>Sugars: <strong>{{comidasDelDia['SNACKS'].azucar}}g</strong></span></div>
+      <div class="fila-comida"><span>Calories: <strong>{{comidasDelDia['SNACK'].caloria}} kcal</strong></span></div>
+      <div class="fila-comida"><span>Fats: <strong>{{comidasDelDia['SNACK'].grasa}}g</strong></span></div>
+      <div class="fila-comida"><span>Carbohydrates: <strong>{{comidasDelDia['SNACK'].carbohidrato}}g</strong></span></div>
+      <div class="fila-comida"><span>Proteins: <strong>{{comidasDelDia['SNACK'].proteina}}g</strong></span></div>
+      <div class="fila-comida"><span>Sugars: <strong>{{comidasDelDia['SNACK'].azucar}}g</strong></span></div>
     </div>
 
   </div>
@@ -275,20 +320,188 @@
       </div>
     </div>
 
-    <!--Libro de recetas-->
+<!--Apartadom de los reportes-->
+    <div *ngIf="seccionActiva === 'report'" class="seccion-contenido">
+      <h1>🍎Lujuma's Reports Section🍎</h1>
+      <p class="reportes-explicacion">Generate a report of this exact moment of your macronutrients intake.</p>
+
+      <div class="caja-accion-boton">
+        <button class="boton-crear-reporte" (click)="abrirModalReporte()">
+          Generate Report
+        </button>
+      </div>
+
+      <div class="bloque-tarjeta-visible" *ngIf="listaReportes.length > 0 && listaReportes[0]">
+        <div class="cuadro-reporte-unico">
+          <div class="cabecera-cuadro-unico">
+            <span class="etiqueta-estado-ok">Report Generated</span>
+            <span class="texto-fecha-snapshot"> {{ listaReportes[0]?.fecha }}</span>
+          </div>
+          <div class="cuerpo-cuadro-unico">
+            <p class="parrafo-macros-data">
+              {{ listaReportes[0]?.informacion || 'ERror' }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mostrarModalReporte" class="pantalla-oscura-overlay">
+      <div class="ventana-alerta-emergente">
+        <div class="icono-alerta-decorativo"></div>
+        <h2>🧐Report Confirmation</h2>
+
+        <p class="mensaje-alerta-principal">
+          Are you sure you want to make a report of this day at this point?
+        </p>
+
+        <p class="mensaje-alerta-secundario">
+          Remember, you can generate as many reports as you like. Here you will save the information about your meals till this point.
+        </p>
+
+        <div class="bloque-botones-modal">
+          <button class="boton-modal-cancelar" (click)="cerrarModalReporte()">No</button>
+          <button class="boton-modal-aceptar" (click)="confirmarYGenerarReporte()">Yes</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Apartado del calendario
+    Framework usado: https://freefrontend.com/css-calendars/ -->
+    <div *ngIf="seccionActiva === 'calendar'" class="seccion-contenido">
+      <h1 class="calendario-titulito">🍎 Lujuma's Nutritional Calendar 🍎</h1>
+      <p class="calendario-subtitulito">Track your historical macronutrients intake</p>
+
+      <div class="calendario-base-fija">
+        <div class="calendario-caja-lujuma">
+
+          <div class="calendario-bloque-izquierdo">
+            <div class="numero-grandote">{{ diaSeleccionado }}</div>
+            <div class="texto-dia-semana">{{ mesesAnio[mesSeleccionadoIndex] }}</div>
+            <div class="texto-ano-izquierdo">{{ anioSeleccionado }}</div>
+
+            <div class="bloque-reportes panel-scroll-lujuma">
+              <strong class="texto-snapshots-titulo">Generated Reports ({{ reportesDelDiaSeleccionado.length }})</strong>
+
+              <ul *ngIf="reportesDelDiaSeleccionado.length > 0; else sinReportesDia">
+                <li *ngFor="let rep of reportesDelDiaSeleccionado; let i = index" class="tarjetita-reporte-scroll">
+                  <span class="etiqueta-reporte-mini">Report #{{ i + 1 }}</span>
+                  <p class="detalle-reporte-mini">{{ rep.informacion }}</p>
+                </li>
+              </ul>
+
+              <ng-template #sinReportesDia>
+                <p class="mensaje-sin-registros">No information on this day.</p>
+              </ng-template>
+
+              <div class="cajita-totales-back" *ngIf="diaSeleccionado === fechaActual.getDate() && mesSeleccionadoIndex === fechaActual.getMonth() && datosCalendarioBack">
+                <span class="etiqueta-totales-titulo">Today's macronutrients intake</span>
+                <p>Calories: <strong>{{ datosCalendarioBack.caloria }} kcal</strong></p>
+                <p>P: <strong>{{ datosCalendarioBack.proteina }}g</strong> | C: <strong>{{ datosCalendarioBack.carbohidrato }}g</strong> | G: <strong>{{ datosCalendarioBack.grasa }}g</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="calendario-bloque-derecho">
+            <div class="barra-navegacion-meses">
+              <button class="flechita-mes-btn" (click)="cambiarMes(-1)">◀</button>
+              <span class="texto-mes-ano-titulo">{{ mesesAnio[mesSeleccionadoIndex] }} {{ anioSeleccionado }}</span>
+              <button class="flechita-mes-btn" (click)="cambiarMes(1)">▶</button>
+            </div>
+
+            <div class="fila-letras-semana">
+              <span *ngFor="let diaSem of diasSemana">{{ diaSem }}</span>
+            </div>
+
+            <div class="malla-numeros-dias">
+              <span *ngFor="let esp of espaciosBlancosInicio" class="espacio-vacio-dia"></span>
+
+              <div *ngFor="let d of diasDelMes"
+                   class="bolita-dia-click"
+                   [class.dia-marcadito-ui]="d === diaSeleccionado"
+                   (click)="seleccionarDia(d)">
+
+                <span class="numero-dia-celda">{{ d }}</span>
+
+                <div *ngIf="diaTieneReporte(d)" class="puntito-alerta-reporte"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+<!--Apartado de las recetas-->
     <div *ngIf="seccionActiva === 'recipe-book'" class="seccion-contenido">
       <h1>🍎Lujuma's Recipe Book🍎</h1>
+
       <div class="contenedor-principal-receta">
         <div class="contenedor-boton-receta">
-          <button class="btn-circular">&lt;</button>
+          <button class="btn-circular" (click)="paginaAnterior()" [disabled]="paginaActual === 0">&lt;</button>
         </div>
-      <div class="contenedor-receta">
-        <div class="imagen-libro-receta">
+
+        <div class="contenedor-receta">
+
+          <div *ngIf="paginaActual === 0" class="imagen-libro-receta">
+
+          </div>
+
+          <div *ngIf="paginaActual > 0 && recetaActiva" class="contenido-receta-interior">
+            <div class="encabezado-receta">
+              <span class="tiempo-preparacion">{{ recetaActiva.minutosPreparacion }} min</span>
+              <h2>{{ recetaActiva.nombre }}</h2>
+
+              <div class="etiquetas-receta">
+            <span *ngFor="let tag of recetaActiva.etiquetas" class="etiqueta">
+              #{{ tag.nombre }}
+            </span>
+              </div>
+            </div>
+
+            <table class="tabla-macros-receta">
+              <tr>
+                <th>🥞 Calories</th>
+                <th>🥑 Fats</th>
+                <th>🥨 Carbs</th>
+                <th>🍗 Proteins</th>
+                <th>🧁 Sugars</th>
+              </tr>
+              <tr>
+                <td>{{ recetaActiva.caloria }} kcal</td>
+                <td>{{ recetaActiva.grasa }} g</td>
+                <td>{{ recetaActiva.carbohidrato }} g</td>
+                <td>{{ recetaActiva.proteina }} g</td>
+                <td>{{ recetaActiva.azucar }} g</td>
+              </tr>
+            </table>
+
+            <div class="ingredientes-receta">
+              <h3>Ingredients</h3>
+              <ul class="lista-ingredientes">
+                <li *ngFor="let item of recetaActiva?.ingredientes">
+                  🔹 <strong>{{ item.ingrediente?.nombre }}</strong>
+                  - <span class="porcion-texto">{{ item.porcion }} g</span>
+                </li>
+              </ul>
+            </div>
+
+
+
+            <div class="instrucciones-receta">
+              <h3>Preparation Instructions</h3>
+              <p>{{ recetaActiva.preparacion }}</p>
+            </div>
+
+
+          </div>
+
         </div>
-      </div>
-      <div class="contenedor-boton-receta">
-        <button class="btn-circular">&gt;</button>
-      </div>
+
+        <div class="contenedor-boton-receta">
+          <button class="btn-circular" (click)="paginaSiguiente()" [disabled]="paginaActual === listaRecetasPredeterminadas.length">&gt;</button>
+        </div>
       </div>
     </div>
     <!--Generar reporte-->
@@ -377,13 +590,13 @@
 
             <div class="fila-form">
               <label>Name 🥓🥑</label>
-              <input type="text" class="datos-ingreso" [(ngModel)]="nombreReceta" placeholder="e.g., Protein Pancakes">
+              <input type="text" class="datos-ingreso" [(ngModel)]="nombreReceta" placeholder="Ej. Bandeja paisa">
             </div>
 
             <div class="fila-form">
               <label>Select ingredients 🛒</label>
               <select class="datos-ingreso" [(ngModel)]="idAlimentoSeleccionadoActual" (change)="alimentoCambioSelect()">
-                <option value="" disabled selected>-- Choose a food to add --</option>
+                  <option value="" disabled selected>Choose food you'd like to add</option>
                 <option *ngFor="let alimento of alimentosFiltradosParaSelect" [value]="alimento.idAlimento">
                   {{ alimento.nombre }} ({{ alimento.caloria }} kcal / 100g)
                 </option>
